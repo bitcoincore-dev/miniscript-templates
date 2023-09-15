@@ -1,0 +1,55 @@
+<pre>
+  Miniscript Template: 1
+  Title: 3 Key Timelock Multisig
+  Created: 2023-09-11
+</pre>
+
+=Name of Template=
+
+3 Key Degrading Multisig
+
+=Goal to be achieved by template=
+
+The 2 of 3 Multisig has become a standard in Multisignature solutions. It offers a well-balanced mix of redundancy, security, flexibility, and practicality for securing Bitcoin. Losing one key is not disasterous, and keys can be distributed for better security.
+
+With Miniscript, the addition of time as a security feature enables further disaster recovery such that if two keys were to be lost, a timelock can be employed to allow the wallet to become a 1 of 3 multisig. This can be employed by using a miniscript `tresh()` with four conditions:
+
+This template is proposing 2 Conditions to be satisfied from:
+
+<pre>
+1. Key 1
+2. Key 2
+3. Key 3
+4. timelock (either relative or absolute)
+</pre>
+
+At the wallet's inception, it would require 2 of 3 keys, as if the wallet was a normal legacy 2 of 3 multisig. After the passing of the timelock though, only one key would be required to spend the funds.
+
+
+=Example Miniscript Output Descriptors=
+
+1. 3 Key Time Lock Multisig - Relative Blockheight Timelock
+    wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(100)))
+
+[https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 Reference Testnet Transaction]
+
+2. 3 Key Time Lock Multisig - Absolute Blockheight Timelock
+    wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(2477600)))
+
+[https://mempool.space/testnet/tx/df8a6946816a839f4de9d511ad902d740cc45ddddca3296de8fc11d1fd0c26f4 Reference Testnet Transaction]
+
+
+3. 3 Key Time Lock Multisig - Absolute Epochtime Timelock
+    wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(1694563200)))
+
+[https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690 Reference Testnet Transaction]
+
+4. 3 Key Time Lock Multisig - Relative Epochtime Timelock
+    wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(4194400)))
+
+[https://mempool.space/testnet/tx/1a9ba5a5a37a0df72dfbc28f57de89ce35bda1819afa73712bc29caa32164687 Reference Testnet Transaction]
+
+
+
+
+(To Add Taproot based keyset for Minitapscript once merged into Core)

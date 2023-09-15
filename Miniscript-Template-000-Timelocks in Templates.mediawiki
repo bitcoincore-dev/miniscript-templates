@@ -1,0 +1,81 @@
+<pre>
+  Miniscript Template: 0
+  Title: Proposed Timelock Usage
+  Created: 2023-09-11
+</pre>
+
+
+1. Name of Template
+
+Proposed Timelock Usage
+
+2. Goal to be achieved by template
+
+Since [https://bitcoin.sipa.be/miniscript/ Miniscript] facilitates easier access to utilizing timelocks in Bitcoin, it opens a new frontier in Bitcoin security concerning the construction of more advanced Scripts. This proposal serves as an initial attempt to outline best practices for using timelocks in conjunction with Miniscript. The objective is to aid in wallet recovery and to standardize timelock use across various software and hardware wallet implementations.
+
+Should an output descriptor be lost or only partially recovered for any reason, minimizing the overall search space for expected timestamp values can expedite recovery. Although Miniscript supports any valid block height or epoch timestamp for absolute timelocks, the purpose of these proposed templates is to constrain the inherent open-endedness of Miniscript. This aims to foster user-friendly best practices in software wallets and signing devices.
+
+=Block height based Timelocks:=
+
+==Absolute block height based Timelocks==
+
+Proposal: Absolute block height based timelocks should be a multiple of 100, always ending in `00`.
+
+Examples of valid Block Height Absolute Timelocks
+
+*after(1000)
+*after(50700)
+*after(82800)
+*after(615000)
+
+
+== Relative block height based Timelocks ==
+Proposal: Relative block height timelocks should also be multiple of 100, with an exception for the maximum possible value supported, `65,536` (2^16) blocks.
+
+
+*older(100)
+*older(1500)
+*older(65536)
+
+
+=Epoch timestamp based Timelocks:=
+
+==Absolute Epochtime based Timelocks==
+
+*Since the goal of an epoch timestamp timelock is to align events with wall time instead of block time, epoch timestamps used should be of signifigance. Since there is a much larger searchspace with epoch timestamp timelocks, I'm proposing Epoch Timestamp based Timelocks should be set to either Noon, or Midnight GMT. 
+*In practice, this means that absolute epoch timelocks should be divisible by either `43,200` (Noon GMT) or `86,400` (Midnight GMT).
+*Currently in 2106 (at epoch timestamp `4294967295`, February 7th 2106 at 6:28:15 am UTC), the 32 bit unsigned integer used for timestamps will overflow. As a precaution no epoch timestamps should be used past 2105. This is not to say using timelocks this far out is advisable, but to ensure funds are forward compatible, epoch timestamps should not be placed after 2105 (`4291704000`).
+
+
+Propsoed Examples of valid Epoch Timestamp Absolute Timelocks
+
+
+*after(1694476800)
+*after(1694520000)
+*after(2234779200)
+*after(1767139200)
+
+
+
+
+==Relative Epochtime based Timelocks==
+
+Proposed Examples of valid Block Height Relative Timelocks
+- Following [https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki BIP68], relative epoch timestamp timelocks can only go as far out as 33,554,431 seconds (1.06 years), as it is constrained by the same units as relative block height timelocks, 65,536 (2^16), where each unit represents 512 seconds of time (65,356 units * 512 seconds = 33,554,432 seconds).
+
+* An Epoch Timestamp is not valid until the network's MTP (Median Time Past) of the past 11 blocks is greater than the epoch timestamp, MTP is defined in: [https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki BIP113].
+
+* Since the 512 second incrimentor can not align exactly to a 24 hour day, for consistent recovery sake, relative epoch timestamps should be divisible by 100.
+
+* The smallest value that can be used to have the miniscript compiler interpret a relative timelock is older(4194305) (calculated by following the BIP68 spec of: `1 |= (1 << 22)`). This is a 1 unit timelock, which is 512 seconds, or 8 minutes and 32 second timelock.
+
+* The maximum value for a relative epoch timelock is `4259839` which is 65,536 unit timelock, resulting in 33,554,431 seconds, or 388 days, an exception should be made for the largest possible epoch timestamp relative timelock.
+
+In practice, this makes each 100 unit incriment of a timelock being approximately ~14.2 hours in MTP.
+
+Propsoed Examples of valid Epoch Timestamp Absolute Timelocks
+
+*older(4194400)
+*older(4195000)
+*older(4200000)
+*older(4259839)

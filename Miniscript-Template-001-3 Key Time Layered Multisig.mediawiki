@@ -1,5 +1,5 @@
 Miniscript Template: 1
-Title: 3 Key Timelock Multisig
+Title: 3 Key Time Layered Multisig
 Created: 2023-09-11
 
 =Name of Template=
@@ -32,6 +32,10 @@ older(65535) - Max duration block height relative timelock (~455 days assuming c
 Suggested Relative Epoch Timelocks:
 older(4224679) - Mid-point epoch time relative timelock (~180 days, 6 months)
 older(4259839) - Max duration epoch time relative timelock (~388 days)
+
+Below is a reference diagram on how the 3 Key Time Layered Multisig operates across time:
+
+<img src=template-001/diagram.jpg></img>
 
 
 =Example Miniscript Output Descriptors=

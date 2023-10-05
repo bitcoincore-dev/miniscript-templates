@@ -44,7 +44,7 @@ Resulting script structure
 
 [https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h link to usage example]
 
-===Additional References===
+===Additional Resources===
 
 [[https://github.com/sipa/miniscript/tree/master | github.com/sipa/miniscript/tree/master]]
 

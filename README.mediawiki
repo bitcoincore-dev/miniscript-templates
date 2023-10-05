@@ -27,8 +27,8 @@ __NOTOC__
 {| class="wikitable sortable" style="width: auto; text-align: center; font-size: smaller; table-layout: fixed;"
 !Number
 !Title
-!Owner
-!Type
+!Author
+!Created
 !Status
 |- style="background-color: #ffcfcf"
 | [[Miniscript-Template-000-Timelocks-in-Templates.mediawiki|000]]

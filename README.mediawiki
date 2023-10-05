@@ -3,7 +3,7 @@
 
 ## About
 
-[Miniscript](https://bitcoin.sipa.be/miniscript/) is a language for composing Bitcoin Scripts in a structured way, facilitating analysis, composition, and generic signing. It's a simplified, composable subset of Bitcoin's Script language. Developed to overcome limitations in writing complex spending conditions directly in Bitcoin Script, it enables formal verification and offers a more human-friendly interface.
+[Miniscript](https://bitcoin.sipa.be/miniscript is a language for composing Bitcoin Scripts in a structured way, facilitating analysis, composition, and generic signing. It's a simplified, composable subset of Bitcoin's Script language. Developed to overcome limitations in writing complex spending conditions directly in Bitcoin Script, it enables formal verification and offers a more human-friendly interface.
 
 ## Goals
 

@@ -29,15 +29,15 @@ __NOTOC__
 !Title
 !Author
 !Created
+!Updated
+!Version
 !Status
 |- style="background-color: #ffcfcf"
 | [[Miniscript-Template-000-Timelocks-in-Templates.mediawiki|000]]
 | Timelocks-in-Templates
 | Rob Hamilton rob@anchorwatch.com
-| Process
-| Replaced
-|- style="background-color: #cfffcf"
-| [[bip-0002.mediawiki|2]]
-|
-|
+| 2023-09-11
+| 2023-09-11
+| v0.0.1
+| Active
 |}

@@ -16,7 +16,8 @@ __NOTOC__
 
 =Submission Format=
 
-===Name of Template===
+===Name of Template=== 
+    Proposed Timelock Usage
 
 ===Goal to be achieved by template===
 

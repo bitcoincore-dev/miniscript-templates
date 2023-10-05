@@ -7,9 +7,11 @@
 
 =Goals=
 
-- Have reviewed templates that leverage miniscript to assure there are not unintended ways of executing a valid spend beyond the intended miniscript policy.
-- Have standardized usages of miniscript to streamline software and hardware wallet integrations.
-- Have uniform on-chain usage of miniscript templates for better privacy.
+# Have reviewed templates that leverage miniscript to assure there are not unintended ways of executing a valid spend beyond the intended miniscript policy.
+
+# Have standardized usages of miniscript to streamline software and hardware wallet integrations.
+
+# Have uniform on-chain usage of miniscript templates for better privacy.
 
 =Submission Format=
 

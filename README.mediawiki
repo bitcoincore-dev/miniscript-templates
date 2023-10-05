@@ -24,14 +24,14 @@ __NOTOC__
 
 
 <code>
-def quick_sort(arr):    
-less = []    	          
-pivot_list = []        	
-more = []               
-if len(arr) <= 1:      
-return arr           
-else:                 
-pass                 
+def quick_sort(arr):      
+less = []                 
+pivot_list = []           
+more = []                 
+if len(arr) <= 1:         
+return arr                
+else:                     
+pass                      
 </code>
 
 

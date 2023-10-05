@@ -21,8 +21,6 @@ __NOTOC__
 ===Goal to be achieved by template===
     A 3-of-3 that turns into a 2-of-3 after 90 days
 
-
-
 ===Miniscript Implementation===
 
     thresh(3,pk(key_1),s:pk(key_2),s:pk(key_3),sln:older(12960))
@@ -37,7 +35,7 @@ Resulting script structure
     OP_ADD 3 OP_EQUAL
 
 
-[https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 Link to reference transaction]
+[https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 Link to test transaction]
     https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769
 
 ===Additional Notes===

@@ -18,11 +18,10 @@ __NOTOC__
 
 ===Name of Template===
     Proposed Timelock Usage
-
-
 ===Goal to be achieved by template===
-    Proposed Timelock Usage
-    
+    A 3-of-3 that turns into a 2-of-3 after 90 days
+
+
 
 ===Example Miniscript Output Descriptors===
 

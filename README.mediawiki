@@ -38,7 +38,7 @@ Resulting script structure
 [https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 Link to test transaction]
     https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769
 
-===Additional Notes===
+===Additional Links===
 
 [https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h link to usage example]
 

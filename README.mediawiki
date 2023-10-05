@@ -26,16 +26,14 @@ __NOTOC__
 
 {| class="wikitable sortable" style="width: auto; text-align: center; font-size: smaller; table-layout: fixed;"
 !Number
-!Layer
 !Title
 !Owner
 !Type
 !Status
 |- style="background-color: #ffcfcf"
-| [[MSTemplate-0001.mediawiki|1]]
-|
-| BIP Purpose and Guidelines
-| Amir Taaki
+| [[Miniscript-Template-000-Timelocks-in-Templates.mediawiki|000]]
+| Timelocks-in-Templates
+| Rob Hamilton rob@anchorwatch.com
 | Process
 | Replaced
 |- style="background-color: #cfffcf"

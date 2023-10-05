@@ -32,7 +32,7 @@ __NOTOC__
 !Type
 !Status
 |- style="background-color: #ffcfcf"
-| [[bip-0001.mediawiki|1]]
+| [[MSTemplate-0001.mediawiki|1]]
 |
 | BIP Purpose and Guidelines
 | Amir Taaki

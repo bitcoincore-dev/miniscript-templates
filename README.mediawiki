@@ -1,5 +1,6 @@
-=Miniscript Templates=
+__NOTOC__
 
+=Miniscript Templates=
 
 =About=
 
@@ -15,9 +16,12 @@
 
 =Submission Format=
 
-1. Name of Template
-2. Goal to be achieved by template
-3. Example Miniscript Output Descriptor
+# Name of Template
+
+# Goal to be achieved by template
+
+# Example Miniscript Output Descriptor
+
 
 
 {| class="wikitable sortable" style="width: auto; text-align: center; font-size: smaller; table-layout: fixed;"
@@ -36,4 +40,6 @@
 | Replaced
 |- style="background-color: #cfffcf"
 | [[bip-0002.mediawiki|2]]
+|
+|
 |}

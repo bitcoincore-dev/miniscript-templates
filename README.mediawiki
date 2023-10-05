@@ -23,6 +23,17 @@ __NOTOC__
 # Example Miniscript Output Descriptor
 
 
+<code>
+def quick_sort(arr):    
+less = []    	          
+pivot_list = []        	
+more = []               
+if len(arr) <= 1:      
+return arr           
+else:                 
+pass                 
+</code>
+
 
 {| class="wikitable sortable" style="width: auto; text-align: center; font-size: smaller; table-layout: fixed;"
 !Number

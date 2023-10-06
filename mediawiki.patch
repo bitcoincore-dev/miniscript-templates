@@ -1,0 +1,287 @@
+diff --git a/README.mediawiki b/README.mediawiki
+new file mode 100644
+index 0000000..1f1c4cf
+--- /dev/null
++++ b/README.mediawiki
+@@ -0,0 +1,49 @@
++=Miniscript Templates=
++
++=About=
++
++[https://bitcoin.sipa.be/miniscript/ Miniscript] is a language for composing Bitcoin Scripts in a structured way, facilitating analysis, composition, and generic signing. It's a simplified, composable subset of Bitcoin's Script language. Developed to overcome limitations in writing complex spending conditions directly in Bitcoin Script, it enables formal verification and offers a more human-friendly interface.
++
++=Goals=
++
++# Have reviewed templates that leverage miniscript to assure there are not unintended ways of executing a valid spend beyond the intended miniscript policy.
++
++# Have standardized usages of miniscript to streamline software and hardware wallet integrations.
++
++# Have uniform on-chain usage of miniscript templates for better privacy.
++
++=Submission Format=
++
++===Name of Template===
++    Proposed Timelock Usage
++===Goal to be achieved by template===
++    A 3-of-3 that turns into a 2-of-3 after 90 days
++
++===Miniscript Implementation===
++
++    thresh(3,pk(key_1),s:pk(key_2),s:pk(key_3),sln:older(12960))
++
++Resulting script structure
++    <key_1> OP_CHECKSIG OP_SWAP <key_2> OP_CHECKSIG OP_ADD OP_SWAP <key_3>
++    OP_CHECKSIG OP_ADD OP_SWAP OP_IF
++    0
++    OP_ELSE
++    <a032> OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL
++    OP_ENDIF
++    OP_ADD 3 OP_EQUAL
++
++
++[https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 Link to test transaction]
++    https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769
++
++===Additional Links===
++
++[https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h link to usage example]
++
++===Additional Resources===
++
++[[https://github.com/sipa/miniscript/tree/master | github.com/sipa/miniscript/tree/master]]
++
++[[https://bitcoin.sipa.be/miniscript | bitcoin.sipa.be/miniscript]]
++
++__NOTOC__
+diff --git a/TOC.mediawiki b/TOC.mediawiki
+new file mode 100644
+index 0000000..cd086ff
+--- /dev/null
++++ b/TOC.mediawiki
+@@ -0,0 +1,22 @@
++=Table of Contents=
++{| class="wikitable sortable" style="width: auto; text-align: center; font-size: smaller; table-layout: fixed;"
++!Number
++!Title
++!Author
++!Co-Author
++!Created
++!Updated
++!Version
++!Status
++|- style="background-color: #ffcfcf"
++| [[Miniscript-Template-000-Timelocks-in-Templates.mediawiki|000]]
++| Timelocks-in-Templates
++| Rob Hamilton rob@anchorwatch.com
++| Rob Hamilton rob@anchorwatch.com
++| 2023-09-11
++| 2023-09-11
++| v0.0.1
++| Active
++|}
++
++__NOTOC__
+diff --git a/readme.html b/readme.html
+new file mode 100644
+index 0000000..042f58b
+--- /dev/null
++++ b/readme.html
+@@ -0,0 +1,25 @@
++<h1 id="miniscript-templates">Miniscript Templates</h1>
++<h2 id="about">About</h2>
++<p><a href="https://bitcoin.sipa.be/miniscript/">Miniscript</a> is a
++language for composing Bitcoin Scripts in a structured way, facilitating
++analysis, composition, and generic signing. It&#x2019;s a simplified,
++composable subset of Bitcoin&#x2019;s Script language. Developed to overcome
++limitations in writing complex spending conditions directly in Bitcoin
++Script, it enables formal verification and offers a more human-friendly
++interface.</p>
++<h2 id="goals">Goals</h2>
++<ul>
++<li>Have reviewed templates that leverage miniscript to assure there are
++not unintended ways of executing a valid spend beyond the intended
++miniscript policy.</li>
++<li>Have standardized usages of miniscript to streamline software and
++hardware wallet integrations.</li>
++<li>Have uniform on-chain usage of miniscript templates for better
++privacy.</li>
++</ul>
++<h2 id="submission-format">Submission Format</h2>
++<ol type="1">
++<li>Name of Template</li>
++<li>Goal to be achieved by template</li>
++<li>Example Miniscript Output Descriptor</li>
++</ol>
+diff --git a/readme.html.patch b/readme.html.patch
+new file mode 100644
+index 0000000..440e641
+--- /dev/null
++++ b/readme.html.patch
+@@ -0,0 +1,71 @@
++diff --git a/readme.html b/readme.html
++index 822c2f3..042f58b 100644
++--- a/readme.html
+++++ b/readme.html
++@@ -1,54 +1,25 @@
++-<h1 id="miniscript_templates">Miniscript Templates</h1>
++-<h1 id="about">About</h1>
+++<h1 id="miniscript-templates">Miniscript Templates</h1>
+++<h2 id="about">About</h2>
++ <p><a href="https://bitcoin.sipa.be/miniscript/">Miniscript</a> is a
++ language for composing Bitcoin Scripts in a structured way, facilitating
++-analysis, composition, and generic signing. It's a simplified,
++-composable subset of Bitcoin's Script language. Developed to overcome
+++analysis, composition, and generic signing. It&#x2019;s a simplified,
+++composable subset of Bitcoin&#x2019;s Script language. Developed to overcome
++ limitations in writing complex spending conditions directly in Bitcoin
++ Script, it enables formal verification and offers a more human-friendly
++ interface.</p>
++-<h1 id="goals">Goals</h1>
++-<ol>
+++<h2 id="goals">Goals</h2>
+++<ul>
++ <li>Have reviewed templates that leverage miniscript to assure there are
++ not unintended ways of executing a valid spend beyond the intended
++ miniscript policy.</li>
++-</ol>
++-<ol>
++ <li>Have standardized usages of miniscript to streamline software and
++ hardware wallet integrations.</li>
++-</ol>
++-<ol>
++ <li>Have uniform on-chain usage of miniscript templates for better
++ privacy.</li>
+++</ul>
+++<h2 id="submission-format">Submission Format</h2>
+++<ol type="1">
+++<li>Name of Template</li>
+++<li>Goal to be achieved by template</li>
+++<li>Example Miniscript Output Descriptor</li>
++ </ol>
++-<h1 id="submission_format">Submission Format</h1>
++-<h3 id="name_of_template">Name of Template</h3>
++-<p><code>&#xA0;&#xA0;&#xA0;Proposed&#xA0;Timelock&#xA0;Usage</code></p>
++-<h3 id="goal_to_be_achieved_by_template">Goal to be achieved by
++-template</h3>
++-<p><code>&#xA0;&#xA0;&#xA0;A&#xA0;3-of-3&#xA0;that&#xA0;turns&#xA0;into&#xA0;a&#xA0;2-of-3&#xA0;after&#xA0;90&#xA0;days</code></p>
++-<h3 id="miniscript_implementation">Miniscript Implementation</h3>
++-<p><code>&#xA0;&#xA0;&#xA0;thresh(3,pk(key_1),s:pk(key_2),s:pk(key_3),sln:older(12960))</code></p>
++-<p>Resulting script structure</p>
++-<p><code>&#xA0;&#xA0;&#xA0;</code><key_1><code>&#xA0;OP_CHECKSIG&#xA0;OP_SWAP&#xA0;</code><key_2><code>&#xA0;OP_CHECKSIG&#xA0;OP_ADD&#xA0;OP_SWAP&#xA0;</code><key_3><br />
++-<code>&#xA0;&#xA0;&#xA0;OP_CHECKSIG&#xA0;OP_ADD&#xA0;OP_SWAP&#xA0;OP_IF</code><br />
++-<code>&#xA0;&#xA0;&#xA0;0</code><br />
++-<code>&#xA0;&#xA0;&#xA0;OP_ELSE</code><br />
++-<code>&#xA0;&#xA0;&#xA0;</code><a032><code>&#xA0;OP_CHECKSEQUENCEVERIFY&#xA0;OP_0NOTEQUAL</code><br />
++-<code>&#xA0;&#xA0;&#xA0;OP_ENDIF</code><br />
++-<code>&#xA0;&#xA0;&#xA0;OP_ADD&#xA0;3&#xA0;OP_EQUAL</code></p>
++-<p><a
++-href="https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769">Link
++-to test transaction</a></p>
++-<p><code>&#xA0;&#xA0;&#xA0;</code><a
++-href="https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769"><code>https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769</code></a></p>
++-<h3 id="additional_links">Additional Links</h3>
++-<p><a
++-href="https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h">link
++-to usage example</a></p>
++-<h3 id="additional_resources">Additional Resources</h3>
++-<p><a href="https://github.com/sipa/miniscript/tree/master"
++-title="wikilink"> github.com/sipa/miniscript/tree/master</a></p>
++-<p><a href="https://bitcoin.sipa.be/miniscript" title="wikilink">
++-bitcoin.sipa.be/miniscript</a></p>
++-<p></p>
+diff --git a/readme.mediawiki.html b/readme.mediawiki.html
+new file mode 100644
+index 0000000..822c2f3
+--- /dev/null
++++ b/readme.mediawiki.html
+@@ -0,0 +1,54 @@
++<h1 id="miniscript_templates">Miniscript Templates</h1>
++<h1 id="about">About</h1>
++<p><a href="https://bitcoin.sipa.be/miniscript/">Miniscript</a> is a
++language for composing Bitcoin Scripts in a structured way, facilitating
++analysis, composition, and generic signing. It's a simplified,
++composable subset of Bitcoin's Script language. Developed to overcome
++limitations in writing complex spending conditions directly in Bitcoin
++Script, it enables formal verification and offers a more human-friendly
++interface.</p>
++<h1 id="goals">Goals</h1>
++<ol>
++<li>Have reviewed templates that leverage miniscript to assure there are
++not unintended ways of executing a valid spend beyond the intended
++miniscript policy.</li>
++</ol>
++<ol>
++<li>Have standardized usages of miniscript to streamline software and
++hardware wallet integrations.</li>
++</ol>
++<ol>
++<li>Have uniform on-chain usage of miniscript templates for better
++privacy.</li>
++</ol>
++<h1 id="submission_format">Submission Format</h1>
++<h3 id="name_of_template">Name of Template</h3>
++<p><code>&#xA0;&#xA0;&#xA0;Proposed&#xA0;Timelock&#xA0;Usage</code></p>
++<h3 id="goal_to_be_achieved_by_template">Goal to be achieved by
++template</h3>
++<p><code>&#xA0;&#xA0;&#xA0;A&#xA0;3-of-3&#xA0;that&#xA0;turns&#xA0;into&#xA0;a&#xA0;2-of-3&#xA0;after&#xA0;90&#xA0;days</code></p>
++<h3 id="miniscript_implementation">Miniscript Implementation</h3>
++<p><code>&#xA0;&#xA0;&#xA0;thresh(3,pk(key_1),s:pk(key_2),s:pk(key_3),sln:older(12960))</code></p>
++<p>Resulting script structure</p>
++<p><code>&#xA0;&#xA0;&#xA0;</code><key_1><code>&#xA0;OP_CHECKSIG&#xA0;OP_SWAP&#xA0;</code><key_2><code>&#xA0;OP_CHECKSIG&#xA0;OP_ADD&#xA0;OP_SWAP&#xA0;</code><key_3><br />
++<code>&#xA0;&#xA0;&#xA0;OP_CHECKSIG&#xA0;OP_ADD&#xA0;OP_SWAP&#xA0;OP_IF</code><br />
++<code>&#xA0;&#xA0;&#xA0;0</code><br />
++<code>&#xA0;&#xA0;&#xA0;OP_ELSE</code><br />
++<code>&#xA0;&#xA0;&#xA0;</code><a032><code>&#xA0;OP_CHECKSEQUENCEVERIFY&#xA0;OP_0NOTEQUAL</code><br />
++<code>&#xA0;&#xA0;&#xA0;OP_ENDIF</code><br />
++<code>&#xA0;&#xA0;&#xA0;OP_ADD&#xA0;3&#xA0;OP_EQUAL</code></p>
++<p><a
++href="https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769">Link
++to test transaction</a></p>
++<p><code>&#xA0;&#xA0;&#xA0;</code><a
++href="https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769"><code>https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769</code></a></p>
++<h3 id="additional_links">Additional Links</h3>
++<p><a
++href="https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h">link
++to usage example</a></p>
++<h3 id="additional_resources">Additional Resources</h3>
++<p><a href="https://github.com/sipa/miniscript/tree/master"
++title="wikilink"> github.com/sipa/miniscript/tree/master</a></p>
++<p><a href="https://bitcoin.sipa.be/miniscript" title="wikilink">
++bitcoin.sipa.be/miniscript</a></p>
++<p></p>
+diff --git a/toc.html b/toc.html
+new file mode 100644
+index 0000000..3cee40f
+--- /dev/null
++++ b/toc.html
+@@ -0,0 +1,30 @@
++<h1 id="table_of_contents">Table of Contents</h1>
++<table>
++<thead>
++<tr class="header">
++<th><p>Number</p></th>
++<th><p>Title</p></th>
++<th><p>Author</p></th>
++<th><p>Co-Author</p></th>
++<th><p>Created</p></th>
++<th><p>Updated</p></th>
++<th><p>Version</p></th>
++<th><p>Status</p></th>
++</tr>
++</thead>
++<tbody>
++<tr class="odd">
++<td><p><a
++href="Miniscript-Template-000-Timelocks-in-Templates.mediawiki"
++title="wikilink">000</a></p></td>
++<td><p>Timelocks-in-Templates</p></td>
++<td><p>Rob Hamilton rob@anchorwatch.com</p></td>
++<td><p>Rob Hamilton rob@anchorwatch.com</p></td>
++<td><p>2023-09-11</p></td>
++<td><p>2023-09-11</p></td>
++<td><p>v0.0.1</p></td>
++<td><p>Active</p></td>
++</tr>
++</tbody>
++</table>
++<p></p>

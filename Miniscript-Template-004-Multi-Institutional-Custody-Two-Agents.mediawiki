@@ -10,7 +10,7 @@ Multi Institutional Custody
 
 =Goal to be achieved by template=
 
-To provide a more robust method of securing Bitcoin across multiple stakeholders, with a soverign recovery path for the owner of the Bitcoin after a contract has expired.
+To provide a more robust method of securing Bitcoin across multiple stakeholders, with a sovereign recovery path for the owner of the Bitcoin after a contract has expired.
 
 For this template, we are assuming a 3 institution model.
 
@@ -42,7 +42,7 @@ Upon contract expiration between a principal and an agent, a "Sovereign Recovery
 
 =Layred Security=
 
-A visual representation of this template's different spending conditions are best summarized as a table, where each row (called a "layer") representing how the different spending paths become available in chronological order. To spend the bitcoin at any given layer, all conditions must be satisifed for key key set present within that layer:
+A visual representation of this template's different spending conditions are best summarized as a table, where each row (called a "layer") representing how the different spending paths become available in chronological order. To spend the bitcoin at any given layer, all conditions must be satisfied for key key set present within that layer:
 
 
 {|

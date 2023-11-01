@@ -1,34 +1,39 @@
--:README.mediawiki
-README.mediawiki:
+TEMPLATES:=Miniscript-Template-000-Timelocks-in-Templates Miniscript-Template-001-3-Key-Time-Layered-Multisig Miniscript-Template-002-5-Time-Layered-Multisig Miniscript-Template-002-5-Time-Layered-Multisig Miniscript-Template-003-Multi-Institutional-Custody-One-Agent Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents
+-: $(TEMPLATES)
+README:
 	@type -P pandoc >/tmp/miniscript-template.log && \
-		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > index.html || type -P docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
 
-Miniscript-Template-000-Timelocks-in-Templates.mediawiki:
+Miniscript-Template-000-Timelocks-in-Templates:
 	@type -P pandoc >/tmp/miniscript-template.log && \
-		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@
-Miniscript-Template-001-3-Key-Time-Layered-Multisig.mediawiki:
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
+Miniscript-Template-001-3-Key-Time-Layered-Multisig:
 	@type -P pandoc >/tmp/miniscript-template.log && \
-		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@
-Miniscript-Template-002-5-Time-Layered-Multisig.mediawiki:
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
+Miniscript-Template-002-5-Time-Layered-Multisig:
 	@type -P pandoc >/tmp/miniscript-template.log && \
-		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@
-Miniscript-Template-003-Multi-Institutional-Custody-One-Agent.mediawiki:
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
+Miniscript-Template-003-Multi-Institutional-Custody-One-Agent:
 	@type -P pandoc >/tmp/miniscript-template.log && \
-		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@
-Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents.mediawiki:
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
+Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents:
 	@type -P pandoc >/tmp/miniscript-template.log && \
-		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
 
-.PHONY:*.mediawiki
+%.o: %.c $(TEMPLATES)
+	▸ @echo "cc $<"
+	▸ @$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY:Miniscript-*

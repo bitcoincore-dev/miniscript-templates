@@ -7,6 +7,7 @@
 ## 5. Submit pull request
 
 TEMPLATES:=\
+TOC \
 Miniscript-Template-000-Timelocks-in-Templates \
 Miniscript-Template-001-3-Key-Time-Layered-Multisig \
 Miniscript-Template-002-5-Time-Layered-Multisig \

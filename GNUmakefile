@@ -1,5 +1,10 @@
-## Submission:
+## Submission workflow:
+## #
 ## 1. Add your template to the TEMPLATES list
+## 2. Add your template to the TOC.mediawiki
+## 3. make
+## 4. Check html is rendered correctly
+## 5. Submit pull request
 
 TEMPLATES:=\
 Miniscript-Template-000-Timelocks-in-Templates \

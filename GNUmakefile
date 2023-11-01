@@ -8,7 +8,7 @@ Miniscript-Template-002-5-Time-Layered-Multisig \
 Miniscript-Template-003-Multi-Institutional-Custody-One-Agent \
 Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents \
 
--: ##README $(TEMPLATES)
+-: README $(TEMPLATES)
 
 README:
 	@type -P pandoc >/tmp/miniscript-template.log && \

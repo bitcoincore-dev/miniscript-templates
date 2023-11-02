@@ -68,7 +68,7 @@ Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents \
 -:README $(TEMPLATES)
 
 serve:
-	. serve
+	@. serve 2>/tmp/serve.log
 
 README:
 	@type -P pandoc >/tmp/miniscript-template.log && \

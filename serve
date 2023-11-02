@@ -2,6 +2,9 @@
 
 # Start an HTTP server from a directory, optionally specifying the port
 
+port="${1:-8000}";
+$(npx http-server -p $port -o) || serve || echo "install npx or python@2.7"
+
 function serve() {
 	local port="${1:-8000}";
 	sleep 1 && open "http://localhost:${port}/" &

@@ -76,38 +76,37 @@ README:
 		sed 's/__NOTOC__//' > index.html || type -P docker && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
 
-## Miniscript-Template-000-Timelocks-in-Templates:
-## 	@type -P pandoc >/tmp/miniscript-template.log && \
-## 		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
-## 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-## 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
-## Miniscript-Template-001-3-Key-Time-Layered-Multisig:
-## 	@type -P pandoc >/tmp/miniscript-template.log && \
-## 		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
-## 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-## 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
-## Miniscript-Template-002-5-Time-Layered-Multisig:
-## 	@type -P pandoc >/tmp/miniscript-template.log && \
-## 		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
-## 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-## 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
-## Miniscript-Template-003-Multi-Institutional-Custody-One-Agent:
-## 	@type -P pandoc >/tmp/miniscript-template.log && \
-## 		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
-## 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-## 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
-## Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents:
-## 	@type -P pandoc >/tmp/miniscript-template.log && \
-## 		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
-## 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
-## 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
-## 
-## ##%.html: %.mediawiki $(TEMPLATES)
-
 $(TEMPLATES).%:
 	@type -P pandoc >/tmp/miniscript-template.log && \
 		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
 		sed 's/__NOTOC__//' > $@.html || type -P docker && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki
 
-.PHONY:$(TEMPLATES)
+
+.PHONY: report
+report:## 	print make variables
+##	print make variables
+	@echo ''
+	@echo 'TIME=${TIME}'
+	@echo 'PROJECT_NAME=${PROJECT_NAME}'
+	@echo 'VERSION=${VERSION}'
+	@echo ''
+	@echo 'OS=${OS}'
+	@echo 'OS_VERSION=${OS_VERSION}'
+	@echo 'ARCH=${ARCH}'
+	@echo ''
+	@echo 'HOMEBREW=${HOMEBREW}'
+	@echo 'PANDOC=${PANDOC}'
+	@echo ''
+
+checkbrew:## 	install brew command
+##	install brew, pandoc and docker --cask
+ifeq ($(HOMEBREW),)
+	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+	@type -P brew && brew install pandoc
+	@type -P brew && brew install emscripten
+	@type -P brew && brew install --cask docker
+endif
+
+.PHONY:$(TEMPLATES) serve

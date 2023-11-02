@@ -6,7 +6,7 @@
 
 =Goals=
 
-# Have reviewed templates that leverage miniscript to assure there are not unintended ways of executing a valid spend beyond the intended miniscript policy.
+# Have reviewed templates that leverage miniscript to assure there are not unintended ways of executing a valid spend beyond the intended [https://raw.githubusercontent.com/bitcoin/bitcoin/master/src/script/miniscript.h Miniscript] policy.
 
 # Have standardized usages of miniscript to streamline software and hardware wallet integrations.
 

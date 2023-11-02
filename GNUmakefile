@@ -1,3 +1,54 @@
+ifeq ($(project),)
+PROJECT_NAME                            := $(notdir $(PWD))
+else
+PROJECT_NAME                            := $(project)
+endif
+export PROJECT_NAME
+VERSION                                 :=$(shell cat version)
+export VERSION
+TIME                                    :=$(shell date +%s)
+export TIME
+
+OS                                      :=$(shell uname -s)
+export OS
+OS_VERSION                              :=$(shell uname -r)
+export OS_VERSION
+ARCH                                    :=$(shell uname -m)
+export ARCH
+ifeq ($(ARCH),x86_64)
+TRIPLET                                 :=x86_64-linux-gnu
+export TRIPLET
+endif
+ifeq ($(ARCH),arm64)
+TRIPLET                                 :=aarch64-linux-gnu
+export TRIPLET
+endif
+ifeq ($(ARCH),arm64)
+TRIPLET                                 :=aarch64-linux-gnu
+export TRIPLET
+endif
+
+HOMEBREW                                :=$(shell which brew || false)
+
+PANDOC                                  :=$(shell which pandoc || false)
+
+RUSTUP_INIT_SKIP_PATH_CHECK=yes
+TOOLCHAIN=stable
+Z=	##
+ifneq ($(toolchain),)
+
+ifeq ($(toolchain),nightly)
+TOOLCHAIN=nightly
+Z=-Z unstable-options
+endif
+
+ifeq ($(toolchain),stable)
+TOOLCHAIN=stable
+Z=	##
+endif
+
+endif
+
 ## Submission workflow:
 ## #
 ## 1. Add your template to the TEMPLATES list

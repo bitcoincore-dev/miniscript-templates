@@ -1,44 +1,61 @@
-=Miniscript Templates=
+=miniScript Templates=
 
 =About=
 
-[https://bitcoin.sipa.be/miniscript/ Miniscript] is a language for composing Bitcoin Scripts in a structured way, facilitating analysis, composition, and generic signing. It's a simplified, composable subset of Bitcoin's Script language. Developed to overcome limitations in writing complex spending conditions directly in Bitcoin Script, it enables formal verification and offers a more human-friendly interface.
+[https://bitcoin.sipa.be/miniscript/ miniScript] is a language for composing Bitcoin [https://en.bitcoin.it/wiki/Script Script] in a structured way, facilitating analysis, composition, and generic signing. It's a simplified, composable subset of the Bitcoin [https://en.bitcoin.it/wiki/Script Script] language. Developed to overcome limitations in writing complex spending conditions directly in Bitcoin [https://en.bitcoin.it/wiki/Script Script], it enables formal verification and offers a more human-friendly interface.
 
 =Goals=
 
-# Have reviewed templates that leverage miniscript to assure there are not unintended ways of executing a valid spend beyond the intended [https://raw.githubusercontent.com/bitcoin/bitcoin/master/src/script/miniscript.h Miniscript] policy.
+# Have reviewed templates that leverage miniScript to assure there are not unintended ways of executing a valid spend beyond the intended [https://raw.githubusercontent.com/bitcoin/bitcoin/master/src/script/miniscript.h miniScript] policy.
 
-# Have standardized usages of miniscript to streamline software and hardware wallet integrations.
+# Have standardized usages of miniScript to streamline software and hardware wallet integrations.
 
-# Have uniform on-chain usage of miniscript templates for better privacy.
+# Have uniform on-chain usage of miniScript templates for better privacy.
 
 =Submission Format=
 
 ===Name of Template===
     Proposed Timelock Usage
+
 ===Goal to be achieved by template===
     A 3-of-3 that turns into a 2-of-3 after 90 days
 
-===Miniscript Implementation===
+===miniScript Implementation===
+	thresh(3,pk(key_1),s:pk(key_2),s:pk(key_3),sln:older(12960))
 
-    thresh(3,pk(key_1),s:pk(key_2),s:pk(key_3),sln:older(12960))
+Resulting Bitcoin Script structure
 
-Resulting script structure
-    <key_1> OP_CHECKSIG OP_SWAP <key_2> OP_CHECKSIG OP_ADD OP_SWAP <key_3>
-    OP_CHECKSIG OP_ADD OP_SWAP OP_IF
-    0
-    OP_ELSE
-    <a032> OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL
-    OP_ENDIF
-    OP_ADD 3 OP_EQUAL
+<code>
+	\<key_1> OP_CHECKSIG OP_SWAP <key_2> OP_CHECKSIG OP_ADD OP_SWAP <key_3>
+	OP_CHECKSIG OP_ADD OP_SWAP OP_IF
+	0
+	OP_ELSE
+	<a032> OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL
+	OP_ENDIF
+	OP_ADD 3 OP_EQUAL
+
+</code>
+
+{{Codesample |name=ingress.yaml |lang=yaml |scheme=dark |line=1 |highlight=5,8 |code=
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: foo-redirect
+  namespace: tool-foo
+  labels:
+    name: foo-redirect
+  annotations:
+    kubernetes.io/ingress.class: nginx
+}}
 
 
-[https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 Link to test transaction]
+[https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769 testnet tx]
     https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769
 
 ===Additional Links===
 
-[https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h link to usage example]
+[https://github.com/sipa/miniscript/blob/master/bitcoin/script/miniscript.h usage example]
 
 ===Additional Resources===
 

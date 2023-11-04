@@ -5,9 +5,6 @@
 # Usage:
 # ./serve or ./serve 1234
 
-port="${1:-8080}";
-$(npx http-server -p $port -o) 2>/tmp/serve.log || serve || echo "install npx or python@2.7"
-
 function serve() {
 	local port="${1:-8080}";
 	sleep 1 && open "http://localhost:${port}/" &
@@ -17,3 +14,6 @@ function serve() {
 
     $(python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";)
 }
+
+port="${1:-8080}";
+npx http-server -p $port -o 2>/tmp/serve.log || serve 2>/tmp/serve.log || echo "install npx or python@2.7"

@@ -59,11 +59,11 @@ endif
 
 TEMPLATES:=\
 TOC \
-Miniscript-Template-000-Timelocks-in-Templates \
-Miniscript-Template-001-3-Key-Time-Layered-Multisig \
-Miniscript-Template-002-5-Time-Layered-Multisig \
-Miniscript-Template-003-Multi-Institutional-Custody-One-Agent \
-Miniscript-Template-004-Multi-Institutional-Custody-Two-Agents \
+MinT-000-Timelocks-in-Templates \
+MinT-001-3-Key-Time-Layered-Multisig \
+MinT-002-5-Time-Layered-Multisig \
+MinT-003-Multi-Institutional-Custody-One-Agent \
+MinT-004-Multi-Institutional-Custody-Two-Agents \
 
 -:README $(TEMPLATES)
 
@@ -87,7 +87,7 @@ serve:
 README:
 	@type -P pandoc >/tmp/miniscript-template.log && \
 		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
-		sed 's/__NOTOC__//' > index.html || type -P docker && docker pull pandoc/latex:2.6 && \
+		sed 's/__NOTOC__//' > index.2.html || type -P docker && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md
 	 
 	## @type -P pandoc >/tmp/miniscript-template.log && \

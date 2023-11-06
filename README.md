@@ -6,6 +6,43 @@
 |----------|----------|----------|----------|----------|----------|
 |[MinT-000](MinT-000.md)|[MinT-001](MinT-001.md)|[MinT-002](MinT-002.md)|[MinT-003](MinT-003.md)|[MinT-004](MinT-004.md)|
 
+ <span> |
+---     |    ---
+Value   |  Value
+Value   |  Value
+
+
+|Regular | text | in header | turns bold |
+|-|-|-|-|
+| __So__ | __bold__ | __all__ | __table entries__ |
+| __and__ | __it looks__ | __like a__ | __"headerless table"__ |
+
+
+<style>
+    .headerless th {
+        display: none;
+    }
+</style>
+
+<div class="headerless">
+
+| | |
+|---|---|
+|Some |table |
+| WITHOUT | header |
+</div>
+
+|This|is|
+|---|---|
+|Some |table |
+| WITH |header |
+
+
+thead th:empty {
+    border: thin solid red !important;
+    display: none;
+}
+
 ## About
 
 [Miniscript](https://bitcoin.sipa.be/miniscript/) is a language for

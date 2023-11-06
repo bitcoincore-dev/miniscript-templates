@@ -38,6 +38,10 @@ Value   |  Value
 | WITH |header |
 
 
+|This|is|
+|---|---|
+|Some |table |
+
 thead th:empty {
     border: thin solid red !important;
     display: none;

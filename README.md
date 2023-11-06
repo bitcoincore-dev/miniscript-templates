@@ -53,9 +53,9 @@ To preview the correctly rendered html file, click
 | WITH |header |
 
 
-|This|is|
-|---|---|
-|Some |table |
+|This|is|This|is|
+|---|---|---|---|
+|Some |table |Some |table |
 
 
 </html>

@@ -55,7 +55,7 @@ To preview the correctly rendered html file, click
 
 |This|is|This|is|
 |---|---|---|---|
-|Some |table |Some |table |
+|[MinT-000](MinT-000.md) |[MinT-000](MinT-000.md) |[MinT-000](MinT-000.md) |[MinT-000](MinT-000.md) |
 
 
 </html>

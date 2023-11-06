@@ -1,36 +1,25 @@
 [![Miniscript Templates (MinT)
 ](https://avatars.githubusercontent.com/u/7424983?s=20) **Miniscript-templates** ](https://github.com/Blockstream/miniscript-templates)
 
-
-| <!-- --> | <!-- --> | <!-- --> | <!-- --> | <!-- --> | <!-- --> |
-|----------|----------|----------|----------|----------|----------|
-|[MinT-000](MinT-000.md)|[MinT-001](MinT-001.md)|[MinT-002](MinT-002.md)|[MinT-003](MinT-003.md)|[MinT-004](MinT-004.md)|
-
- <span> |
----     |    ---
-Value   |  Value
-Value   |  Value
-
-
-|Regular | text | in header | turns bold |
-|-|-|-|-|
-| __So__ | __bold__ | __all__ | __table entries__ |
-| __and__ | __it looks__ | __like a__ | __"headerless table"__ |
-
-
+<html>
 <style>
     .headerless th {
         display: none;
     }
 </style>
 
-<div class="headerless">
+<style>
+thead th:empty {
+    border: thin solid red !important;
+    display: none;
+}
 
-| | |
-|---|---|
-|Some |table |
-| WITHOUT | header |
-</div>
+</style>
+
+
+| <!-- --> | <!-- --> | <!-- --> | <!-- --> | <!-- --> |
+|----------|----------|----------|----------|----------|
+|[MinT-000](MinT-000.md)|[MinT-001](MinT-001.md)|[MinT-002](MinT-002.md)|[MinT-003](MinT-003.md)|[MinT-004](MinT-004.md)|
 
 |This|is|
 |---|---|
@@ -42,10 +31,9 @@ Value   |  Value
 |---|---|
 |Some |table |
 
-thead th:empty {
-    border: thin solid red !important;
-    display: none;
-}
+
+</html>
+
 
 ## About
 

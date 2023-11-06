@@ -31,8 +31,19 @@ output:
 To preview the correctly rendered html file, click 
 <a href="http://htmlpreview.github.io/?https://github.com/FlorianWanders/FAonGitHub/blob/master/MWE.html" title="preview on htmlpreview.github.io" target="_blank">here</a>. 
 
+\\[
+    A^T_S = B 	---- A^T_S = B
+\\]
 
-| <!-- --> | <!-- --> | <!-- --> | <!-- --> | <!-- --> |
+\\[
+    A^T_S = B
+\\]
+
+
+\\[ * \\]
+
+
+| <!-- * --> | <!-- * --> | <!-- * --> | <!-- * --> | <!-- * --> |
 |----------|----------|----------|----------|----------|
 |[MinT-000](MinT-000.md)|[MinT-001](MinT-001.md)|[MinT-002](MinT-002.md)|[MinT-003](MinT-003.md)|[MinT-004](MinT-004.md)|
 

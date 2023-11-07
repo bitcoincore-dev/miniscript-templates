@@ -67,48 +67,12 @@ endif
 ##	5. Submit pull request
 
 TEMPLATES:=\
-MinTT-999 \
-MinT-999 \
 MinT-000 \
 MinT-001 \
 MinT-002 \
 MinT-003 \
-MinT-004 \
-MinT-9999 \
-MinTT-9999
+MinT-004
 
-TEMPLATES_MEDIAWIKI:=\
-MinTT-999.mediawiki  \
-MinT-999.mediawiki   \
-MinT-000.mediawiki   \
-MinT-001.mediawiki   \
-MinT-002.mediawiki   \
-MinT-003.mediawiki   \
-MinT-004.mediawiki   \
-MinT-9999.mediawiki  \
-MinTT-999.mediawiki
-
-TEMPLATES_MD:=\
-MinTT-999.md  \
-MinT-999.md   \
-MinT-000.md   \
-MinT-001.md   \
-MinT-002.md   \
-MinT-003.md   \
-MinT-004.md   \
-MinT-9999.md  \
-MinTT-9999.md
-
-TEMPLATES_HTML:=\
-MinTT-999.html  \
-MinT-999.html   \
-MinT-000.html   \
-MinT-001.html   \
-MinT-002.html   \
-MinT-003.html   \
-MinT-004.html   \
-MinT-9999.html  \
-MinTT-9999.html
 
 .PHONY:-
 -:
@@ -136,11 +100,10 @@ report:## 	make variables
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
 	@echo 'TEMPLATES_HTML=${TEMPLATES_HTML}'
 
-all:README $(TEMPLATES_MEDIAWIKI) $(TEMPLATES_MD) $(TEMPLATES_HTML)
+all:README $(TEMPLATES_MEDIAWIKI) ##$(TEMPLATES_MD) $(TEMPLATES_HTML)
 	$(MAKE) strip
 
 strip:## 	strip strings from files
-	sed -i '' 's/__NOTOC__//' *.mediawiki
 	sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.md
 	sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.html
 	sed -i '' 's/.md/.html/' index.html
@@ -173,29 +136,28 @@ TOC:## 	TOC
 		sed 's/__NOTOC__//' > TOC.html || command -v docker && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md || $(MAKE) docker-start
 
-MinT-999.mediawiki:
-$(TEMPLATES).mediawiki:
-	#@echo "$(TEMPLATES)"
-	#@echo "$@"
-	#@echo $
+$(TEMPLATES):
 	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@ | \
-		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@ || $(MAKE) docker-start
+		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
+		sed 's/__NOTOC__//' > $@.html || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
 
-$(TEMPLATES_HTML):$(TEMPLATES_MD)
-	@echo "TEMPLATES $(TEMPLATES)"
-	@echo "TEMPLATES_MD $(TEMPLATES_MD)"
-	@echo "AT $@"
-	@echo AT2 $@
-	@echo CARROT_HAT $^@
-	@echo $^
-	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $^@ | \
-		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $^@ || $(MAKE) docker-start
-
-$(TEMPLATES_HTML):
+## $(TEMPLATES_MD):
+## 	@echo AT2 $@
+## 	@echo DOLLAR_CARROT_AT $^@
+## 	@echo DOLLAR_HAT $^
+## 	@echo DOLLAR_PERCENT $%
+## 	@echo DOLLAR_LT $<
+## 	@echo DOLLAR_Q $?
+## 	@echo DOLLAR_BAR $|
+## ##@touch $@
+## ##@touch $^@
+## 	@command -v pandoc >/dev/null 2>&1 && \
+## 		pandoc --preserve-tabs --ascii --from=markdown --to=html $@ | \
+## 		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
+## 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
+## 
+## $(TEMPLATES_HTML):
 
 checkbrew:## 	install brew command
 ifeq ($(HOMEBREW),)

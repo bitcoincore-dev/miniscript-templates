@@ -75,6 +75,12 @@ jobs:
       - run: python3 -m pip install virtualenv
 
       - run: V=1 make
+      - run: V=1 make all
+      - run: V=1 make help
+      - run: V=1 make report
+      - run: V=1 make checkbrew
+      - run: V=1 make submodules
+      - run: V=1 make docker-start
 
       - name: Save deps
         id: cache-deps-save

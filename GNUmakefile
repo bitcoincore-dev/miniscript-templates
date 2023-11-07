@@ -77,16 +77,38 @@ MinT-004 \
 MinT-9999 \
 MinTT-9999
 
+TEMPLATES_MEDIAWIKI:=\
+MinTT-999.mediawiki  \
+MinT-999.mediawiki   \
+MinT-000.mediawiki   \
+MinT-001.mediawiki   \
+MinT-002.mediawiki   \
+MinT-003.mediawiki   \
+MinT-004.mediawiki   \
+MinT-9999.mediawiki  \
+MinTT-999.mediawiki
+
 TEMPLATES_MD:=\
-MinTT-999 \
-MinT-999 \
-MinT-000 \
-MinT-001 \
-MinT-002 \
-MinT-003 \
-MinT-004 \
-MinT-9999 \
-MinTT-9999
+MinTT-999.md  \
+MinT-999.md   \
+MinT-000.md   \
+MinT-001.md   \
+MinT-002.md   \
+MinT-003.md   \
+MinT-004.md   \
+MinT-9999.md  \
+MinTT-9999.md
+
+TEMPLATES_HTML:=\
+MinTT-999.html  \
+MinT-999.html   \
+MinT-000.html   \
+MinT-001.html   \
+MinT-002.html   \
+MinT-003.html   \
+MinT-004.html   \
+MinT-9999.html  \
+MinTT-9999.html
 
 .PHONY:-
 -:
@@ -110,9 +132,11 @@ report:## 	make variables
 	@echo 'PANDOC=${PANDOC}'
 	@echo ''
 	@echo 'TEMPLATES=${TEMPLATES}'
+	@echo 'TEMPLATES_MEDIAWIKI=${TEMPLATES_MEDIAWIKI}'
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
+	@echo 'TEMPLATES_HTML=${TEMPLATES_HTML}'
 
-all:README MinT-** MinTT-**
+all:README $(TEMPLATES_MEDIAWIKI) $(TEMPLATES_MD) $(TEMPLATES_HTML)
 	$(MAKE) strip
 
 strip:## 	strip strings from files
@@ -149,25 +173,25 @@ TOC:## 	TOC
 		sed 's/__NOTOC__//' > TOC.html || command -v docker && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md || $(MAKE) docker-start
 
-# @type -P pandoc >/tmp/miniscript-template.log && \
-# 	pandoc --preserve-tabs --from=mediawiki --to=markdown $@.mediawiki | \
-# 	sed 's/__NOTOC__//' > readme.html || type -P docker && docker pull pandoc/latex:2.6 && \
-# 	docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | sed 's/__NOTOC__//' > $@.html || $(MAKE) docker-start
-#
-# @type -P pandoc >/tmp/miniscript-template.log && \
-# 	pandoc --preserve-tabs --from=mediawiki --to=markdown $@.mediawiki | \
-# 	sed 's/__NOTOC__//' > README.md || type -P docker && docker pull pandoc/latex:2.6 && \
-# 	docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 --preserve-tabs --ascii --from=mediawiki --to=markdown $@.mediawiki || $(MAKE) docker-start
-
-%.html: %.mediawiki $(TEMPLATES)
-	@echo "$(TEMPLATES)"
-	@echo "$@"
-	@echo $
+MinT-999.mediawiki:
+$(TEMPLATES).mediawiki:
+	#@echo "$(TEMPLATES)"
+	#@echo "$@"
+	#@echo $
 	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
+		pandoc --preserve-tabs --ascii --from=markdown --to=html $@ | \
 		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@ || $(MAKE) docker-start
 
+MinT-999.html:
+$(TEMPLATES_HTML):
+	#@echo "$(TEMPLATES)"
+	#@echo "$@"
+	#@echo $
+	@command -v pandoc >/dev/null 2>&1 && \
+		pandoc --preserve-tabs --ascii --from=markdown --to=html $@ | \
+		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@ || $(MAKE) docker-start
 
 checkbrew:## 	install brew command
 ifeq ($(HOMEBREW),)

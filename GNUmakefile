@@ -147,8 +147,7 @@ $(TEMPLATES):
 		--volume "`pwd`:/data" \
 		--user `id -u`:`id -g` \
 		pandoc/latex:2.6 $@.md && \
-		sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || \
-		$(MAKE) docker-start
+		sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || echo "start docker"
 
 ## $(TEMPLATES_MD):
 ## 	@echo AT2 $@

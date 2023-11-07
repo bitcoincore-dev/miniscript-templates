@@ -113,7 +113,7 @@ report:## 	make variables
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
 
 all:README $(TEMPLATES) $(TEMPLATES_MD)## 	make README Mint-**
-#$(MAKE) -f Makefile help
+	$(MAKE) strip
 
 strip:## 	strip strings from files
 	sed -i '' 's/__NOTOC__//' *.mediawiki

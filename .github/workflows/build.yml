@@ -74,8 +74,9 @@ jobs:
 
       - run: python3 -m pip install virtualenv
 
+      - run: printenv
       - run: V=1 make
-      - run: V=1 make all
+      - run: OS=False V=1 make all
       - run: V=1 make help
       - run: V=1 make report
       - run: V=1 make checkbrew

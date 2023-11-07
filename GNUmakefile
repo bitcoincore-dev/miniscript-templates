@@ -112,7 +112,7 @@ report:## 	make variables
 	@echo 'TEMPLATES=${TEMPLATES}'
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
 
-all:README $(TEMPLATES) $(TEMPLATES_MD)## 	make README Mint-**
+all:README MinT-** MinTT-**
 	$(MAKE) strip
 
 strip:## 	strip strings from files
@@ -159,20 +159,18 @@ TOC:## 	TOC
 # 	sed 's/__NOTOC__//' > README.md || type -P docker && docker pull pandoc/latex:2.6 && \
 # 	docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 --preserve-tabs --ascii --from=mediawiki --to=markdown $@.mediawiki || $(MAKE) docker-start
 
-.PHONY:%.md %.mediawiki
-%.mediawiki:$(TEMPLATES)## 	$(TEMPLATES)
-	echo $@ $^
+.PHONY:%.md %.mediawiki %.html
+%.mediawiki:$(TEMPLATES)
  	@command -v pandoc >/dev/null 2>&1 && \
  		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
  		sed 's/__NOTOC__//' > $@.html || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.mediawiki && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
 
-%.md:$(TEMPLATES_MD)## 	$(TEMPLATES_MD)
-	echo $@ $^
+%.md:$(TEMPLATES)
 	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
+		pandoc --preserve-tabs --ascii --from=markdown --to=html $@ | \
 		sed 's/__NOTOC__//' > $@.html || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@ || $(MAKE) docker-start
 
 
 checkbrew:## 	install brew command

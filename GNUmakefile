@@ -79,7 +79,7 @@ MinT-004
 	@echo
 
 all:README $(TEMPLATES)## 	all: README $(TEMPLATES)
-	$(MAKE) strip
+	##$(MAKE) strip
 
 help:## 	help
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/	/'

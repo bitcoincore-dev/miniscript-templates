@@ -73,11 +73,14 @@ MinT-002 \
 MinT-003 \
 MinT-004
 
-
 .PHONY:-
 -:
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 	@echo
+
+all:README $(TEMPLATES)## 	all: README $(TEMPLATES)
+	$(MAKE) strip
+
 help:## 	help
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/	/'
 
@@ -100,41 +103,36 @@ report:## 	make variables
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
 	@echo 'TEMPLATES_HTML=${TEMPLATES_HTML}'
 
-all:README $(TEMPLATES)
-	$(MAKE) strip
-
-strip:## 	strip strings from files
-	sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.md
-	sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.html
-	sed -i '' 's/.md/.html/' index.html
+strip:
+	@sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.md
+	@sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.html
+	@sed -i '' 's/.md/.html/' index.html
 
 serve:strip## 	serve
 	@. serve 2>/tmp/serve.log
 
-# Example command:
-# docker \
-	run \
-	--rm \
-	--volume "`pwd`:/data" \
-	--user `id -u`:`id -g` \
-	pandoc/latex:2.6 \
-	--preserve-tabs \
-	--ascii \
-	--from=mediawiki \
-	--to=html \
-	README.mediawiki | sed 's/__NOTOC__//' > readme.html
+README:
+	@command \
+		-v \
+		pandoc >/dev/null 2>&1 && \
+		pandoc \
+		--preserve-tabs \
+		--ascii \
+		--from=markdown \
+		--to=html $@.md | \
+		sed 's/__NOTOC__//' > index.html || \
+		command -v docker && \
+		docker \
+		pull \
+		pandoc/latex:2.6 && \
+		docker \
+		run \
+		--rm \
+		--volume "`pwd`:/data" \
+		--user `id -u`:`id -g` \
+		pandoc/latex:2.6 $@.md > index.html || \
+		$(MAKE) docker-start
 	
-README:## 	README
-	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
-		sed 's/__NOTOC__//' > index.html || command -v docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md > index.html || $(MAKE) docker-start
-	
-TOC:## 	TOC
-	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
-		sed 's/__NOTOC__//' > TOC.html || command -v docker && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md || $(MAKE) docker-start
 
 $(TEMPLATES):
 	@command -v pandoc >/dev/null 2>&1 && \

@@ -84,6 +84,13 @@ all:README $(TEMPLATES)## 	all: README $(TEMPLATES)
 help:## 	help
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/	/'
 
+serve:strip## 	serve
+	@. serve 2>/tmp/serve.log
+strip:
+	@sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.md
+	@sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.html
+	@sed -i '' 's/.md/.html/' index.html
+
 .PHONY: report
 report:## 	make variables
 	@echo ''
@@ -102,14 +109,6 @@ report:## 	make variables
 	@echo 'TEMPLATES_MEDIAWIKI=${TEMPLATES_MEDIAWIKI}'
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
 	@echo 'TEMPLATES_HTML=${TEMPLATES_HTML}'
-
-strip:
-	@sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.md
-	@sed -i '' 's/\\_\\_NOTOC\\_\\_//' *.html
-	@sed -i '' 's/.md/.html/' index.html
-
-serve:strip## 	serve
-	@. serve 2>/tmp/serve.log
 
 README:
 	@command \

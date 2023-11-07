@@ -100,7 +100,7 @@ report:## 	make variables
 	@echo 'TEMPLATES_MD=${TEMPLATES_MD}'
 	@echo 'TEMPLATES_HTML=${TEMPLATES_HTML}'
 
-all:README $(TEMPLATES_MEDIAWIKI) ##$(TEMPLATES_MD) $(TEMPLATES_HTML)
+all:README $(TEMPLATES)
 	$(MAKE) strip
 
 strip:## 	strip strings from files
@@ -138,9 +138,21 @@ TOC:## 	TOC
 
 $(TEMPLATES):
 	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
-		sed 's/__NOTOC__//' > $@.html || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
+		pandoc \
+		--preserve-tabs \
+		--ascii \
+		--from=markdown \
+		--to=html $@.md | \
+		sed 's/__NOTOC__//' > $@.html || \
+		command -v docker 2>/dev/null && \
+		docker pull pandoc/latex:2.6 && \
+		docker run \
+		--rm \
+		--volume "`pwd`:/data" \
+		--user `id -u`:`id -g` \
+		pandoc/latex:2.6 $@.md && \
+		sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || \
+		$(MAKE) docker-start
 
 ## $(TEMPLATES_MD):
 ## 	@echo AT2 $@

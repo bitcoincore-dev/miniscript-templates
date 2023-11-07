@@ -130,7 +130,7 @@ README:
 		--volume "`pwd`:/data" \
 		--user `id -u`:`id -g` \
 		pandoc/latex:2.6 $@.md > index.html || \
-		$(MAKE) docker-start
+		[[ "$(GITHUB_JOB)" != "build" ]] && $(MAKE) docker-start
 	
 
 $(TEMPLATES):

@@ -75,7 +75,7 @@ MinT-002 \
 MinT-003 \
 MinT-004 \
 MinT-9999 \
-MinTT-9999 \
+MinTT-9999
 
 TEMPLATES_MD:=\
 MinTT-999 \
@@ -86,7 +86,7 @@ MinT-002 \
 MinT-003 \
 MinT-004 \
 MinT-9999 \
-MinTT-9999 \
+MinTT-9999
 
 .PHONY:-
 -:
@@ -159,13 +159,13 @@ TOC:## 	TOC
 # 	sed 's/__NOTOC__//' > README.md || type -P docker && docker pull pandoc/latex:2.6 && \
 # 	docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 --preserve-tabs --ascii --from=mediawiki --to=markdown $@.mediawiki || $(MAKE) docker-start
 
- $(TEMPLATES).%:## 	$(TEMPLATES)
+ $(TEMPLATES):## 	$(TEMPLATES)
  	@command -v pandoc >/dev/null 2>&1 && \
  		pandoc --preserve-tabs --ascii --from=mediawiki --to=html $@.mediawiki | \
  		sed 's/__NOTOC__//' > $@.html || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@.md && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@.html || $(MAKE) docker-start
 
-$(TEMPLATES_MD).%:## 	$(TEMPLATES_MD)
+$(TEMPLATES_MD):## 	$(TEMPLATES_MD)
 	@command -v pandoc >/dev/null 2>&1 && \
 		pandoc --preserve-tabs --ascii --from=markdown --to=html $@.md | \
 		sed 's/__NOTOC__//' > $@.html || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \

@@ -183,15 +183,19 @@ $(TEMPLATES).mediawiki:
 		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
 		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@ || $(MAKE) docker-start
 
-MinT-999.html:
-$(TEMPLATES_HTML):
-	#@echo "$(TEMPLATES)"
-	#@echo "$@"
-	#@echo $
+$(TEMPLATES_HTML):$(TEMPLATES_MD)
+	@echo "TEMPLATES $(TEMPLATES)"
+	@echo "TEMPLATES_MD $(TEMPLATES_MD)"
+	@echo "AT $@"
+	@echo AT2 $@
+	@echo CARROT_HAT $^@
+	@echo $^
 	@command -v pandoc >/dev/null 2>&1 && \
-		pandoc --preserve-tabs --ascii --from=markdown --to=html $@ | \
+		pandoc --preserve-tabs --ascii --from=markdown --to=html $^@ | \
 		sed 's/__NOTOC__//' > $@ || command -v docker 2>/dev/null && docker pull pandoc/latex:2.6 && \
-		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $@ || $(MAKE) docker-start
+		docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6 $@ && sed -i '' 's/\\_\\_NOTOC\\_\\_//' $^@ || $(MAKE) docker-start
+
+$(TEMPLATES_HTML):
 
 checkbrew:## 	install brew command
 ifeq ($(HOMEBREW),)

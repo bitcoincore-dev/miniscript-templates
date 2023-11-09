@@ -1,0 +1,7 @@
+*.html
+**.DS_Store**
+favicon.ico
+apple-touch-icon-precomposed.png
+apple-touch-icon.png
+
+*.mw.md

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+[[ -z "$(command -v miniscript-docker)" ]] && \
+        install $0 /usr/local/bin || true
+
 PORT=${PORT:80}
 VERBOSE=${VERBOSE:-	}
 
@@ -34,14 +37,7 @@ MINT_004="or(99@thresh(3,thresh(2,pk(P1),pk(P2),pk(P3),after(1002),after(1003)),
 
 function docker-start(){
 
-    ## test -d .venv || $(PYTHON3) -m virtualenv .venv
-    ## touch requierments.txt || true
-	## ( \
-	##    source .venv/bin/activate; pip install -q -r requirements.txt; \
-	## );
 	( \
-
-        ## while docker system info > /dev/null 2>&1; do echo 1; done;
 	    while ! docker system info > /dev/null 2>&1; do\
 	    echo 'Waiting for docker to start...';\
         ## echo $DOCKER
@@ -50,9 +46,6 @@ function docker-start(){
 	    fi;\
 	    if [[ "$(uname -s)" == "Darwin" ]]; then\
             DOCKER="/Applications/Docker.app/Contents/MacOS/Docker";\
-            ## [[ -z "$DOCKER" ]] && echo "-z ..." && exit
-            ## [[ ! -z "$DOCKER" ]] && echo "! -z ..." && exit
-            ## echo INNER $DOCKER;\
 	     open --background -a $DOCKER;\
 	    fi;\
 	sleep 1;\
@@ -123,24 +116,32 @@ function build(){
 
 }
 
-function run () {
+function run(){
 
-    echo $1
+    docker-start
     echo $2
-    echo $3
-    ## docker-start
-
     docker \
         run \
         --rm \
         -v $PWD:/src \
         $TAG \
         sh \
-        -c "echo '$1' | miniscript" exit;
+        -c "echo '$2' | ./miniscript-run";exit;
+
+    ## echo $1
+    docker \
+        run \
+        --rm \
+        -v $PWD:/src \
+        $TAG \
+        sh \
+        -c "echo '$1' | miniscript";
+    echo $2
 
 }
 function shell (){
 
+    docker-start
     docker \
         run \
         -t \

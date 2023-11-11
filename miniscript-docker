@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -ev
+#!/usr/bin/env bash
 
 [[ -z "$(command -v miniscript-docker)" ]] && \
         install $0 /usr/local/bin || true
@@ -119,14 +119,14 @@ function build(){
 function run(){
 
     docker-start
-    echo $2
-    docker \
-        run \
-        --rm \
-        -v $PWD:/src \
-        $TAG \
-        sh \
-        -c "echo '$2' | ./miniscript-run";exit;
+    #echo $2
+    #docker \
+    #    run \
+    #    --rm \
+    #    -v $PWD:/src \
+    #    $TAG \
+    #    sh \
+    #    -c "echo '$2' | ./miniscript-run";exit;
 
     ## echo $1
     docker \
@@ -136,8 +136,8 @@ function run(){
         $TAG \
         sh \
         -c "echo '$1' | miniscript";
-    echo $2
 
+exit
 }
 function shell (){
 

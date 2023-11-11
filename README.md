@@ -1,4 +1,4 @@
-# Miniscript Templates
+# [Miniscript Templates](https://github.com/Blockstream/miniscript-templates)
 
 
 ## About

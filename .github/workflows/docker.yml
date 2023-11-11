@@ -1,0 +1,30 @@
+name: docker-matrix
+
+on:
+  push:
+    branches: [ "ma**", "**", "v*", "v**", "v*.*.*-rc**" ]
+  pull_request:
+    branches: [ "ma**", "**" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        tag: ["latest", "3.1.48"]
+
+    container: emscripten/emsdk:${{ matrix.tag }}
+
+    steps:
+      - run: git config --global --add safe.directory /__w/miniscript-templates/miniscript-templates || echo
+      - run : apt-get update
+      - run : apt-get install make
+      - uses: actions/checkout@v2
+      - run : make
+      - run : make README && ls
+      - run : make MinT-000 && ls
+      - run : make MinT-001 && ls
+      - run : make MinT-002 && ls
+      - run : make docker

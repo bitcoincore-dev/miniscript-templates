@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
+rm -f /usr/local/bin/miniscript-run
+[[ -z "$(command -v miniscript-run)" ]] && \
+    install $0 /usr/local/bin/
+
 function help(){
+
     echo "miniscript-run '<miniscript>'";
     echo "miniscript-run 'pk_h(test)'";exit
+
 }
-if [[ "$1" == "help" ]] || [[ "$1" == "-h" ]]; then
+if [[ "$1" == "help" ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
     help; exit
 fi
 
@@ -13,18 +19,22 @@ function install(){
     [ ! -d miniscript ] && \
         $(which git) clone --depth 1 https://github.com/sipa/miniscript.git
 
-    cd miniscript && \
-        make >/dev/null && \
-        install miniscript /usr/local/bin 2>/dev/null && \
-        file miniscript && \
-        cd .. || file echo $(which miniscript);
+    rm -rf /usr/local/bin/miniscript >/dev/null
+    [ -d miniscript ] && \
+    cd miniscript/ && \
+        rm miniscript && \
+        make && \
+        ls && \
+        install ./miniscript /usr/local/bin/ || true && \
+        cd .. || file $(which miniscript);
 
+    rm -f /usr/local/bin/miniscript-run
     [[ -z "$(command -v miniscript-run)" ]] && \
-        install $0 /usr/local/bin || \
-        echo $(which miniscript-run);exit
+        install $0 /usr/local/bin/
+exit
 }
 if [[ "$1" == "install" ]]; then
-    install; exit
+    install;
 fi
 #
 for var in "$@"

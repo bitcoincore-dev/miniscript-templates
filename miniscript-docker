@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -ev
 
 [[ -z "$(command -v miniscript-docker)" ]] && \
         install $0 /usr/local/bin || true

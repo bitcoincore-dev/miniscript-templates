@@ -82,6 +82,7 @@ Resulting Bitcoin Script:
 
 > provide graphics to add detail
 > 
+
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=50" title="logo-50" alt="Alt Image Text" /></a></td>
@@ -108,7 +109,8 @@ Resulting Bitcoin Script:
 <td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
 </tr>
 </tbody>
-</table><br>
+</table>
+
 > provide methods of testing
 > 
 > provide methods of analysis

@@ -12,10 +12,14 @@ TAG=${TAG:-miniscript}
 
 PYTHON3=$(which python3)
 
-if [[ "$(uname -s)" == "Darwin"  ]];
-then
-    DOCKER=${DOCKER:-"/Applications/Docker.app/Contents/MacOS/Docker"}
-fi
+#if [[ "$CI" == "" ]];
+#then
+#    if [[ "$(uname -s)" == "Darwin"  ]];
+#    then
+#        DOCKER=${DOCKER:-"/Applications/Docker.app/Contents/MacOS/Docker"}
+#    fi
+#fi
+DOCKER=docker
 ## echo $DOCKER; ##exit
 ## [[ -z "$DOCKER" ]] && echo "????" && DOCKER=${DOCKER:docker}
 
@@ -46,7 +50,7 @@ function docker-start(){
 	    fi;\
 	    if [[ "$(uname -s)" == "Darwin" ]]; then\
             DOCKER="/Applications/Docker.app/Contents/MacOS/Docker";\
-	     open --background -a $DOCKER;\
+            open --background -a $DOCKER || DOCKER=$(which docker);\
 	    fi;\
 	sleep 1;\
 	done\
@@ -114,8 +118,8 @@ function build(){
 
     echo $DOCKER
     echo $NOCACHE
-    [ "$NOCACHE" ]      && $(which docker) build --no-cache -t $TAG . && exit;
-    [ ! -z "$NOCACHE" ] && $(which docker) build $NOCACHE   -t $TAG . && exit;
+    [ "$NOCACHE" ]      && docker build --no-cache -t $TAG . && exit;
+    [ ! -z "$NOCACHE" ] && docker build $NOCACHE   -t $TAG . && exit;
 
 }
 

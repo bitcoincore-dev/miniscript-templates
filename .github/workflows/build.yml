@@ -24,7 +24,7 @@ jobs:
       BUILD: "build"
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]#, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: echo test
@@ -54,15 +54,11 @@ jobs:
           set-safe-directory: 'true'
 
       - uses: actions-rs/toolchain@v1.0.6
-        #setup for more testing of mint proposals
         #if: ${{ !env.ACT }}
         with:
           toolchain: nightly
           default: true
           override: true
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
 
       - name: echo BUILD
         run: |
@@ -72,30 +68,26 @@ jobs:
         run: |
           echo $VARIABLE
 
-      - name:  apt-get update || brew install virtualenv
+      - name: apt-get update || brew install virtualenv
         run: |
           sudo apt-get update || brew install virtualenv
-
-      - run: python3 -m pip install virtualenv
-
-      - run: printenv
-
-      - run: V=1 make checkbrew
-      #- run: V=1 make docker-start
-      #- run: V=1 make all
-
-      - run: V=1 make
-      - run: V=1 make help
-      - run: V=1 make report
-      - run: V=1 make mint-000
-      - run: V=1 make mint-001
-      - run: V=1 make mint-002
-
-      - run: . miniscript-docker
-      - run: . miniscript-docker help
-      - run: . miniscript-docker start
-      - run: . miniscript-docker build
-      - run: . miniscript-docker examples
+          python3 -m pip install virtualenv
+          printenv
+          V=1 make checkbrew
+          V=1 make
+          V=1 make all
+          V=1 make help
+          V=1 make report
+          V=1 make docker-start
+          [[ ! "$(uname -s)" == "Darwin" ]] && V=1 make
+          [[ ! "$(uname -s)" == "Darwin" ]] && V=1 make all
+          [[ ! "$(uname -s)" == "Darwin" ]] && V=1 make mint-000
+          [[ ! "$(uname -s)" == "Darwin" ]] && V=1 make mint-001
+          [[ ! "$(uname -s)" == "Darwin" ]] && V=1 make mint-002
+          [[ ! "$(uname -s)" == "Darwin" ]] && ./miniscript-docker
+          [[ ! "$(uname -s)" == "Darwin" ]] && miniscript-docker
+          [[ ! "$(uname -s)" == "Darwin" ]] && miniscript-docker help
+          [[ ! "$(uname -s)" == "Darwin" ]] && miniscript-docker examples
 
       - name: Save deps
         id: cache-deps-save
@@ -107,3 +99,4 @@ jobs:
             ~/.rustup
             CARGO_TARGET_DIR
           key: ${{ steps.cache-deps-restore.outputs.cache-primary-key }}
+

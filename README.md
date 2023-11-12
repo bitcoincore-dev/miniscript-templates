@@ -73,6 +73,7 @@ bitcoin.sipa.be/miniscript](https://bitcoin.sipa.be/miniscript )
 <summary>Blockstream Research</summary>
 <p>
 
+<table>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=50" title="logo-50" alt="Alt Image Text" /></a></td>
@@ -99,6 +100,7 @@ bitcoin.sipa.be/miniscript](https://bitcoin.sipa.be/miniscript )
 <td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
 </tr>
 </tbody>
+</table>
 
 <!--uncomment ![Alt Image Text][logo-100] -->
  

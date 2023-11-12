@@ -156,12 +156,32 @@ Resulting Bitcoin Script:
 <summary>Blockstream Research</summary>
 <p>
 
-|[![miniscript templates (MinT)](https://avatars.githubusercontent.com/u/7424983?s=100)]()|[![miniscript templates (MinT)](https://avatars.githubusercontent.com/u/7424983?s=100)]()|[![miniscript templates (MinT)](https://avatars.githubusercontent.com/u/7424983?s=100)]()|[![miniscript templates (MinT)](https://avatars.githubusercontent.com/u/7424983?s=100)]()|
-|:--------:|:--------:|:--------:|:--------:|
-|[![Alt Image Text][logo-50]]()|[![Alt Image Text][logo-50]]()|[![Alt Image Text][logo-50]]()|[![Alt Image Text][logo-50]]()|
-|[![Alt Image Text][logo-30]]()|[![Alt Image Text][logo-30]]()|[![Alt Image Text][logo-30]]()|[![Alt Image Text][logo-30]]()|
-|[![Alt Image Text][logo-20]]()|[![Alt Image Text][logo-20]]()|[![Alt Image Text][logo-20]]()|[![Alt Image Text][logo-20]]()|
-|[![Alt Image Text][logo-10]]()|[![Alt Image Text][logo-10]]()|[![Alt Image Text][logo-10]]()|[![Alt Image Text][logo-10]]()|
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=50" title="logo-50" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=50" title="logo-50" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=50" title="logo-50" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=50" title="logo-50" alt="Alt Image Text" /></a></td>
+</tr><br>
+<tr class="even">
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-30" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-30" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-30" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-30" alt="Alt Image Text" /></a></td>
+</tr><br>
+<tr class="odd">
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-20" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-20" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-20" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-20" alt="Alt Image Text" /></a></td>
+</tr><br>
+<tr class="even">
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
+<td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
+</tr>
+</tbody>
 
 <!--uncomment ![Alt Image Text][logo-100] -->
  

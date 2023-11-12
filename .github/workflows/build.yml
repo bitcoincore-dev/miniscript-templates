@@ -54,6 +54,7 @@ jobs:
           set-safe-directory: 'true'
 
       - uses: actions-rs/toolchain@v1.0.6
+        #setup for more testing of mint proposals
         #if: ${{ !env.ACT }}
         with:
           toolchain: nightly
@@ -75,12 +76,18 @@ jobs:
       - run: python3 -m pip install virtualenv
 
       - run: printenv
-      - run: V=1 make checkbrew
+
+      #- run: V=1 make checkbrew
+      #- run: V=1 make docker-start
+      #- run: V=1 make all
+
       - run: V=1 make
-      - run: V=1 make all
       - run: V=1 make help
       - run: V=1 make report
-      - run: V=1 make docker-start
+      - run: V=1 make mint-000
+      - run: V=1 make mint-001
+      - run: V=1 make mint-002
+
       - run: . miniscript-docker
       - run: . miniscript-docker help
       - run: . miniscript-docker start

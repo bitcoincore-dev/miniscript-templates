@@ -12,9 +12,12 @@ TAG=${TAG:-miniscript}
 
 PYTHON3=$(which python3)
 
-if [[ "$(uname -s)" == "Darwin"  ]];
+if [[ "$CI" == "" ]];
 then
-    DOCKER=${DOCKER:-"/Applications/Docker.app/Contents/MacOS/Docker"}
+    if [[ "$(uname -s)" == "Darwin"  ]];
+    then
+        DOCKER=${DOCKER:-"/Applications/Docker.app/Contents/MacOS/Docker"}
+    fi
 fi
 ## echo $DOCKER; ##exit
 ## [[ -z "$DOCKER" ]] && echo "????" && DOCKER=${DOCKER:docker}

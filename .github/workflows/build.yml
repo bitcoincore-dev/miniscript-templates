@@ -90,7 +90,7 @@ jobs:
 
       - run: . miniscript-docker
       - run: . miniscript-docker help
-      #- run: . miniscript-docker start
+      - run: . miniscript-docker start
       - run: . miniscript-docker build
       - run: . miniscript-docker examples
 

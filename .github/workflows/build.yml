@@ -1,0 +1,94 @@
+name: build-matrix
+
+on:
+  pull_request:
+    branches:
+      - '*'
+      - '*/*'
+      - '**'
+      - 'master'
+      - 'main'
+  push:
+    branches:
+      - '*'
+      - '*/*'
+      - '**'
+      - 'master'
+      - 'main'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    env:
+      BUILD: "build"
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: echo test
+        run: |
+          echo BUILD=${{ env.BUILD }}
+          echo VARIABLE=${{ env.VARIABLE }}
+        env:
+          BUILD1: "VARIABLE"
+      - uses: styfle/cancel-workflow-action@0.11.0
+        if: ${{ !env.ACT }}
+        with:
+          access_token: ${{ github.token }}
+      - name: Restore deps
+        id: cache-deps-restore
+        uses: actions/cache/restore@v3
+        if: ${{ !env.ACT }}
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+            CARGO_TARGET_DIR
+          key: ${{ runner.os }}-deps
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+          set-safe-directory: 'true'
+
+      - uses: actions-rs/toolchain@v1.0.6
+        #if: ${{ !env.ACT }}
+        with:
+          toolchain: nightly
+          default: true
+          override: true
+
+      - name: echo BUILD
+        run: |
+          echo $BUILD
+
+      - name: echo VARIABLE
+        run: |
+          echo $VARIABLE
+
+      - name:  apt-get update || brew install virtualenv
+        run: |
+          sudo apt-get update || brew install virtualenv
+
+      - run: python3 -m pip install virtualenv
+
+      - run: printenv
+      - run: V=1 make checkbrew
+      - run: V=1 make
+      - run: V=1 make all
+      - run: V=1 make help
+      - run: V=1 make report
+      - run: V=1 make docker-start
+
+      - name: Save deps
+        id: cache-deps-save
+        uses: actions/cache/save@v3
+        if: ${{ !env.ACT }}
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+            CARGO_TARGET_DIR
+          key: ${{ steps.cache-deps-restore.outputs.cache-primary-key }}

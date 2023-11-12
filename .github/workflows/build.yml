@@ -61,6 +61,9 @@ jobs:
           default: true
           override: true
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: echo BUILD
         run: |
           echo $BUILD

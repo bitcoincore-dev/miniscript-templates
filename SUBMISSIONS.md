@@ -109,7 +109,6 @@ Resulting Bitcoin Script:
 <td style="text-align: center;"><a href=""><img src="https://avatars.githubusercontent.com/u/7424983?s=30" title="logo-10" alt="Alt Image Text" /></a></td>
 </tr>
 </tbody>
-</table>
 
 > provide methods of testing
 > 

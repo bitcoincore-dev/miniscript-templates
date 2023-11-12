@@ -81,6 +81,11 @@ jobs:
       - run: V=1 make help
       - run: V=1 make report
       - run: V=1 make docker-start
+      - run: . miniscript-docker
+      - run: . miniscript-docker help
+      - run: . miniscript-docker start
+      - run: . miniscript-docker build
+      - run: . miniscript-docker examples
 
       - name: Save deps
         id: cache-deps-save

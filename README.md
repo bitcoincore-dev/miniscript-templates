@@ -1,5 +1,21 @@
-| Left Aligned  | Center Aligned  | Center Aligned  | Right Aligned |
-|:------------- |:---------------:|:---------------:| -------------:|
+|Left Aligned  | Center Aligned  | Center Aligned  | Right Aligned|
+|:------------- | :---------------: |:---------------: | -------------:|
+
+
+
+[![miniscript templates (MinT)
+](https://avatars.githubusercontent.com/u/7424983?s=15) **miniscript-templates** ](https://github.com/Blockstream/miniscript-templates)
+
+
+<center>
+
+|[MinT-000](MinT-000.md)|[MinT-001](MinT-001.md)|[MinT-002](MinT-002.md)|[MinT-003](MinT-003.md)|[MinT-004](MinT-004.md)|
+|----------|----------|----------|----------|----------|
+
+|[MinT-999](MinT-999.md)|[MinTT-999](MinTT-999.md)|[MinTT-9999](MinTT-9999.md)|[MinTT-9999](MinTT-9999.md)|[MinTT-9999](MinTT-9999.md)|
+|----------|----------|----------|----------|----------|
+
+</center>
 
 
 
@@ -7,7 +23,7 @@
 <!-- header -->
 
 [ ![miniscript templates (MinT)](https://avatars.githubusercontent.com/u/7424983?s=30)](.) | [000](mint-000.md) | [001](mint-001.md) | [002](mint-002.md)
-----------|----------|----------|----------
+---------- | ---------- | ---------- | ----------
 
 <!-- additional navigation
 

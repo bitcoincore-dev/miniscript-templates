@@ -24,7 +24,7 @@ jobs:
       BUILD: "build"
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: echo test
@@ -68,36 +68,21 @@ jobs:
         run: |
           echo $VARIABLE
 
-      - name: brew install docker
+      - name: make sequence
         run: |
-          if [[   "$(uname -s)" == "Darwin" ]];then brew install docker; fi
-
-      - name: which docker
-        run: |
-          if [[ ! "$(uname -s)" == "Darwin" ]];then echo $(which docker); fi
-
-      - name: command -v docker
-        run: |
-          if [[ ! "$(uname -s)" == "Darwin" ]];then echo $(command -v docker); fi
-
-      - name: apt-get update || brew install virtualenv
-        run: |
-          sudo apt-get update || brew install virtualenv
-          python3 -m pip install virtualenv
           printenv
           V=1 make
           V=1 make help
           V=1 make report
-          if [[ ! "$(uname -s)" == "Darwin" ]];then V=1 make; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then V=1 make all; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then V=1 make mint-000; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then V=1 make mint-001; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then V=1 make mint-002; fi
+          V=1 make all
+          V=1 make mint-000
+          V=1 make mint-001
+          V=1 make mint-002
           ./miniscript-docker
-          if [[ ! "$(uname -s)" == "Darwin" ]];then ./miniscript-docker; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then miniscript-docker; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then miniscript-docker help; fi
-          if [[ ! "$(uname -s)" == "Darwin" ]];then miniscript-docker example; fi
+          miniscript-docker
+          miniscript-docker help
+          miniscript-docker build
+          miniscript-docker examples
 
       - name: Save deps
         id: cache-deps-save

@@ -68,6 +68,18 @@ jobs:
         run: |
           echo $VARIABLE
 
+      - name: brew install docker
+        run: |
+          if [[   "$(uname -s)" == "Darwin" ]];then brew install docker; fi
+
+      - name: which docker
+        run: |
+          if [[ ! "$(uname -s)" == "Darwin" ]];then echo $(which docker); fi
+
+      - name: command -v docker
+        run: |
+          if [[ ! "$(uname -s)" == "Darwin" ]];then echo $(command -v docker); fi
+
       - name: apt-get update || brew install virtualenv
         run: |
           sudo apt-get update || brew install virtualenv

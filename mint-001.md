@@ -1,12 +1,8 @@
-      Miniscript Template: 1
-      Title: 3 Key Time Layered Multisig
-      Created: 2023-09-11
+# mint-001
 
-# Name of Template
+## 3 Key Degrading Multisig
 
-3 Key Degrading Multisig
-
-# Goal to be achieved by template
+## Motivation
 
 The 2-of-3 multisig serves as a standard in multisignature solutions,
 offering a well-balanced combination of redundancy, security,
@@ -54,30 +50,64 @@ operates across time:
 
 # Example Miniscript Output Descriptors
 
-1\. 3 Key Time Lock Multisig - Relative Blockheight Timelock
+## 3 Key Time Lock Multisig
 
-`   wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(100)))`
+### Relative Blockheight Timelock
+
+#### Policy:
+<code>
+thresh(2,pk(XPUB1),pk(XPUB2),pk(XPUB3),older(100))
+</code>
+
+#### Miniscript:
+<code>
+thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),sln:older(100))
+</code>
+
+#### Descriptor:
+<code>
+wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(100)))
+</code>
+
 
 [Reference Testnet
 Transaction](https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769)
 
-2\. 3 Key Time Lock Multisig - Absolute Blockheight Timelock
+### Absolute Blockheight Timelock
 
-`   wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(2477600)))`
+#### Policy:
+<code>
+thresh(2,pk(XPUB1),pk(XPUB2),pk(XPUB3),older(2477600))
+</code>
+
+#### Miniscript:
+<code>
+thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),sln:older(100))
+</code>
+
+#### Descriptor:
+<code>
+wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(2477600)))
+</code>
+
 
 [Reference Testnet
 Transaction](https://mempool.space/testnet/tx/df8a6946816a839f4de9d511ad902d740cc45ddddca3296de8fc11d1fd0c26f4)
 
-3\. 3 Key Time Lock Multisig - Absolute Epochtime Timelock
+### Absolute Epochtime Timelock
 
-`   wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(1694563200)))`
+<code>
+wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(1694563200)))
+</code>
 
 [Reference Testnet
 Transaction](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690)
 
-4\. 3 Key Time Lock Multisig - Relative Epochtime Timelock
+### Relative Epochtime Timelock
 
-`   wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(4194400)))`
+<code>
+wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(4194400)))
+</code>
 
 [Reference Testnet
 Transaction](https://mempool.space/testnet/tx/1a9ba5a5a37a0df72dfbc28f57de89ce35bda1819afa73712bc29caa32164687)

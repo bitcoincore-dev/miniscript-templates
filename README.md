@@ -33,6 +33,9 @@ under a different license?
 
 -->
 
+### [Submission Template](./SUBMISSIONS.md)
+<!-- additional submission notes -->
+
 ### Additional Resources
 
 [github.com/sipa/miniscript/tree/master](https://github.com/sipa/miniscript/tree/master )

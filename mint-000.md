@@ -98,7 +98,7 @@ Background:
     388 days.
 
 -   The 512 second incrementor is a common multiple for the amount of
-    seconds in 4 days, which is 675 units. To encourage intuitive useage
+    seconds in 4 days, which is 675 units. To encourage intuitive usage
     of relative timelocks, they should be multiples of 675.
 
 An exception should be made<br>

@@ -28,7 +28,7 @@ Initially, the wallet requires 2-of-3 keys, functioning as a traditional 2-of-3 
 
 ### More on Timelock Values
 
-- Descriptor template security is independent of relative or absolute timelock values; the impact is on timelock duration only. Reference transactions on testnet use short-duration timelocks; however, practical applications will vary.
+- There are no valid timelock values that change the security or correctness properties beyond those implied by the [relative](mint-000.md#absolute-block-height-based-timelocks) or [absolute](mint-000.md#block-height-based-timelocks) timelocks themselves. The reference transactions on testnet [^reftx1] [^reftx2] [^reftx3] [^reftx4] use short-duration timelocks. However, practical applications will vary.
 
 - Relative timelock descriptors provide a persistent structure, requiring a self-send to extend timelock security, thus enabling standardized timelock durations.
 
@@ -105,7 +105,7 @@ $\left[ Key_1 \space OR \space Key_2 \space OR \space Key_3 \right]$ $\space AND
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(100)))</code>
 
 [Reference Testnet
-Transaction](https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769)
+Transaction 1](https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769)
 
 ### Absolute Blockheight Timelock
 
@@ -122,23 +122,23 @@ Transaction](https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(2477600)))</code>
 
 [Reference Testnet
-Transaction](https://mempool.space/testnet/tx/df8a6946816a839f4de9d511ad902d740cc45ddddca3296de8fc11d1fd0c26f4)
+Transaction 2](https://mempool.space/testnet/tx/df8a6946816a839f4de9d511ad902d740cc45ddddca3296de8fc11d1fd0c26f4)
 
 ### Absolute Epochtime Timelock
 
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(1694563200)))</code>
 
 [Reference Testnet
-Transaction](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690)
+Transaction 3](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690)
 
 ### Relative Epochtime Timelock
 
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(4194400)))</code>
 
 [Reference Testnet
-Transaction](https://mempool.space/testnet/tx/1a9ba5a5a37a0df72dfbc28f57de89ce35bda1819afa73712bc29caa32164687)
+Transaction 4](https://mempool.space/testnet/tx/1a9ba5a5a37a0df72dfbc28f57de89ce35bda1819afa73712bc29caa32164687)
 
-(Future Addition: Taproot-based keyset for Minitapscript once integrated
+(Future Addition: Taproot-based keyset for MiniTapScript once integrated
 into Core)
 
 [^278days]: **~278 days** ***assuming constant hashrate***
@@ -176,6 +176,14 @@ into Core)
 [^or]: **LOGICAL OR (||)** [more](https://en.cppreference.com/w/cpp/language/operator_logical)
 
 [^k_type]: **Key** expressions (**K Type**) take their inputs from the top of the stack, but instead of verifying a condition directly they always push a public key onto the stack, for which a signature is still required to satisfy the expression. **A "K type" can be converted into a "B type" using the c: wrapper (CHECKSIG)**. <!-- P. Wuille -->
+
+[^reftx1]: [Reference Testnet Transaction 1](https://mempool.space/testnet/tx/13a204ec065f76878ee1f59f79b3eb2cea2b3fda4d8938e6cfa6a8394d090769)
+
+[^reftx2]: [Reference Testnet Transaction 2](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690)
+
+[^reftx3]: [Reference Testnet Transaction 3](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690)
+
+[^reftx4]: [Reference Testnet Transaction 3](https://mempool.space/testnet/tx/1a9ba5a5a37a0df72dfbc28f57de89ce35bda1819afa73712bc29caa32164687)
 
 [lock]: ./assets/lock.png "lock"
 

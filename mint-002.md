@@ -127,6 +127,7 @@ $\left[ Key_3 \space AND \space Key_5 \space AND \space Timelock_1 \right]$
 #### $Key_4$:
 
 $\left[ Key_4 \space AND \space Key_5 \space AND \space Timelock_1 \right]$
+
 ---
 ##### Layer 3:
 

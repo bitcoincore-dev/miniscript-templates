@@ -40,13 +40,13 @@ Initially, the wallet requires 2-of-3 keys, functioning as a traditional 2-of-3 
 
 - **older(**65535**)** - Maximum duration of a block height relative timelock [^455days]
 
-##### Suggested Relative Epoch Timmelocks:
+##### Suggested Relative Epoch Timelocks:
 
 - **older(**4224680**)** - Approximate Halfway point of epoch time relative timelock[^180days]
 
 - **older(**4259839**)** -- Maximum duration of an epoch time relative timelock[^388days]
 
-##### Suggested Relative Epoch Timmelocks: older(4224679)
+##### Suggested Relative Epoch Timelocks: older(4224679)
 
 - Mid-point epoch time relative timelock (\~180 days, 6 months) older(4259839)
 
@@ -126,12 +126,32 @@ Transaction 2](https://mempool.space/testnet/tx/df8a6946816a839f4de9d511ad902d74
 
 ### Absolute Epochtime Timelock
 
+#### Policy:
+
+<code>thresh(2,pk(XPUB1),pk(XPUB2),pk(XPUB3),after(1694563200))</code>
+
+
+#### Miniscript:
+
+
+#### Descriptor:
+
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:after(1694563200)))</code>
 
 [Reference Testnet
 Transaction 3](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d073dae929138a2c6d747404cb46e6d690)
 
 ### Relative Epochtime Timelock
+
+#### Policy:
+
+<code>thresh(2,pk(XPUB1),pk(XPUB2),pk(XPUB3),older(4194400))</code>
+
+#### Miniscript:
+
+<code>thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),sln:after(1694563200))</code>
+
+#### Descriptor:
 
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(4194400)))</code>
 

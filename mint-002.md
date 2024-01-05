@@ -156,12 +156,32 @@ $\left[ Key_5 \space AND \space Timelock_1 \space AND \space Timelock_2 \right]$
 
 ### Relative Blockheight Timelock
 
+#### Policy:
+
+<code>thresh(3,pk(XPUB1),pk(XPUB2),pk(XPUB3),pk(XPUB4),pk(XPUB5),older(100),older(200))</code>
+
+#### Miniscript:
+
+<code>thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),sun:older(100),sun:older(200))</code>
+
+#### Descriptor:
+
 <code>wsh(thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),snu:older(100),snu:older(200)))</code>
 
 [Reference Testnet
 Transaction](https://mempool.space/testnet/tx/31e22b75d58323f7cfca225912a90d49ff959716babd9bad9fe6459a9f91b700)
 
 ### Absolute Blockheight Timelock
+
+#### Policy:
+
+<code>thresh(3,pk(XPUB1),pk(XPUB2),pk(XPUB3),pk(XPUB4),pk(XPUB5),after(1694563200),after(1694563200))</code>
+
+#### Miniscript:
+
+<code>thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),sun:after(1694563200),sun:after(1694563200))</code>
+
+#### Descriptor:
 
 <code>wsh(thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),snu:after(1694563200),snu:after(1694563200)))</code>
 
@@ -170,6 +190,16 @@ Transaction](https://mempool.space/testnet/tx/d6e1dd2e35ffcf111f3868ee38d22e70b2
 
 ### Absolute Epochtime Timelock
 
+#### Policy:
+
+<code>thresh(3,pk(XPUB1),pk(XPUB2),pk(XPUB3),pk(XPUB4),pk(XPUB5),after(1694563200),after(1694476800))</code>
+
+#### Miniscript:
+
+<code>thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),sun:after(1694563200),sun:after(1694476800))</code>
+
+#### Descriptor:
+
 <code>wsh(thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),snu:after(1694563200),snu:after(1694476800)))</code>
 
 [Reference Testnet
@@ -177,12 +207,53 @@ Transaction](https://mempool.space/testnet/tx/caba0f5b81beac934aeed0b93a1a683bc8
 
 ### Relative Epochtime Timelock
 
+#### Policy:
+
+<code>thresh(3,pk(XPUB1),pk(XPUB2),pk(XPUB3),pk(XPUB4),pk(XPUB5),older(4194400),older(4194500))</code>
+
+#### Miniscript:
+
+<code>thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),sun:older(4194400),sun:older(4194500))</code>
+
+#### Descriptor:
+
 <code>wsh(thresh(3,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),s:pk(XPUB5),snu:older(4194400),snu:older(4194500)))</code>
+
+<!-- REF: https://github.com/bitcoin-core/btcdeb -->
+<!--
+btcc XPUB1 OP_CHECKSIG OP_SWAP XPUB2 OP_CHECKSIG OP_ADD OP_SWAP XPUB3 OP_CHECKSIG OP_ADD OP_SWAP XPUB4 OP_CHECKSIG OP_ADD OP_SWAP XPUB5 OP_CHECKSIG OP_ADD OP_SWAP OP_IF 0x600040 OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL OP_ELSE 0 OP_ENDIF OP_ADD OP_SWAP OP_IF 0xc40040 OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL OP_ELSE 0 OP_ENDIF OP_ADD 0x03 OP_EQUAL
+-->
+
+<!--
+055850554231ac7c055850554232ac937c055850554233ac937c055850554234ac937c055850554235ac937c6303600040b292670068937c6303c40040b292670068935387
+-->
+
+<!-- REF: https://github.com/bitcoin/bitcoin -->
+<!--
+bitcoin-cli decodescript 055850554231ac7c055850554232ac937c055850554233ac937c055850554234ac937c055850554235ac937c6303600040b292670068937c6303c40040b292670068935387
+-->
+
+<!--
+{
+  "asm": "5850554231 OP_CHECKSIG OP_SWAP 5850554232 OP_CHECKSIG OP_ADD OP_SWAP 5850554233 OP_CHECKSIG OP_ADD OP_SWAP 5850554234 OP_CHECKSIG OP_ADD OP_SWAP 5850554235 OP_CHECKSIG OP_ADD OP_SWAP OP_IF 4194400 OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL OP_ELSE 0 OP_ENDIF OP_ADD OP_SWAP OP_IF 4194500 OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL OP_ELSE 0 OP_ENDIF OP_ADD 3 OP_EQUAL",
+  "desc": "raw(055850554231ac7c055850554232ac937c055850554233ac937c055850554234ac937c055850554235ac937c6303600040b292670068937c6303c40040b292670068935387)#qlhrfmh7",
+  "type": "nonstandard",
+  "p2sh": "2N9snNqcD2ukieyZAhhcLbKzu35zs6nDdTt",
+  "segwit": {
+    "asm": "0 700af21a4069fbb58551485ea12dcbc6a940ab3cb5407c99fc9e385bd997f98a",
+    "desc": "wsh(raw(055850554231ac7c055850554232ac937c055850554233ac937c055850554234ac937c055850554235ac937c6303600040b292670068937c6303c40040b292670068935387))#a8v0jy32",
+    "hex": "0020700af21a4069fbb58551485ea12dcbc6a940ab3cb5407c99fc9e385bd997f98a",
+    "address": "tb1qwq90yxjqd8amtp23fp02ztwtc655p2euk4q8ex0uncu9hkvhlx9qzskc90",
+    "type": "witness_v0_scripthash",
+    "p2sh-segwit": "2N8Q8fowZsgSdByKcjHAWbvWDE6qXQPDkMw"
+  }
+}
+-->
 
 [Reference Testnet
 Transaction](https://mempool.space/testnet/tx/747087e37aadf7965568d5efa0a02ccc328908539c99e30fcb1bb9631554e317)
 
-(To Add Taproot descriptors once Minitapscript is merged into Core)
+(To Add Taproot descriptors once MiniTapScript is merged into Core)
 
 [^278days]: **~278 days** ***assuming constant hashrate***
 
@@ -193,7 +264,7 @@ Transaction](https://mempool.space/testnet/tx/747087e37aadf7965568d5efa0a02ccc32
 [^388days]: **~388 days**
 
 <!--
-               fragment     fragment      ->     Bitcoin Script
+               fragment     fragment       ->    Bitcoin Script
 -->
 
 [^pk_key1]: **`pk(key1) = c:pk_k(key1)`** --> **`<key1> CHECKSIG`**

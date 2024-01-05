@@ -52,7 +52,7 @@ Initially, the wallet requires 2-of-3 keys, functioning as a traditional 2-of-3 
 
 - Max duration epoch time relative timelock (\~388 days)
 
-	- It is suggested that the first **Relative Epoch Timelock** occurs prior to the next. "Cascading" the time locks sequentially is not neccesary but eases reasoning about the intended purpose and resulting [Bitcoin Script](https://en.bitcoin.it/wiki/Script) structure.
+	- It is suggested that the first **Relative Epoch Timelock** occurs prior to the next. "Cascading" the time locks sequentially is not necessary but eases reasoning about the intended purpose and resulting [Bitcoin Script](https://en.bitcoin.it/wiki/Script) structure.
 
 <!--
 @RandyMcMillan - "Cascading TimeLocks" may be a better term to refer to these structures. "Degrading Timelocks" has a negative connotation."
@@ -139,6 +139,7 @@ Transaction 2](https://mempool.space/testnet/tx/df8a6946816a839f4de9d511ad902d74
 
 #### Miniscript:
 
+<code>"thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),sln:after(1694563200))"</code>
 
 #### Descriptor:
 
@@ -155,11 +156,42 @@ Transaction 3](https://mempool.space/testnet/tx/c0b80a8103e6af92a9bf8e7fb1faa8d0
 
 #### Miniscript:
 
-<code>thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),sln:after(1694563200))</code>
+<code>thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),sln:older(4194400))</code>
 
 #### Descriptor:
 
 <code>wsh(thresh(2,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),snl:older(4194400)))</code>
+
+<!-- REF: https://github.com/bitcoin-core/btcdeb -->
+<!--
+btcc XPUB1 OP_CHECKSIG OP_SWAP XPUB2 OP_CHECKSIG OP_ADD OP_SWAP XPUB3 OP_CHECKSIG OP_ADD OP_SWAP OP_IF 0 OP_ELSE 0x600040 OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL OP_ENDIF OP_ADD 0x2 OP_EQUAL
+-->
+
+<!--
+055850554231ac7c055850554232ac937c055850554233ac937c63006703600040b29268930330783287
+-->
+
+<!-- REF: https://github.com/bitcoin/bitcoin -->
+<!--
+bitcoin-cli decodescript 055850554231ac7c055850554232ac937c055850554233ac937c63006703600040b29268930330783287
+-->
+
+<!--
+{
+  "asm": "5850554231 OP_CHECKSIG OP_SWAP 5850554232 OP_CHECKSIG OP_ADD OP_SWAP 5850554233 OP_CHECKSIG OP_ADD OP_SWAP OP_IF 0 OP_ELSE 4194400 OP_CHECKSEQUENCEVERIFY OP_0NOTEQUAL OP_ENDIF OP_ADD 3307568 OP_EQUAL",
+  "desc": "raw(055850554231ac7c055850554232ac937c055850554233ac937c63006703600040b29268930330783287)#06n0r7qn",
+  "type": "nonstandard",
+  "p2sh": "2NCDFD8rBJkeYg1b2JTbHY9u9fCyCDXyURb",
+  "segwit": {
+    "asm": "0 5faa61a33ff1862186751e57157eb1303f1f04fe4a230124fb449d4efdee900a",
+    "desc": "wsh(raw(055850554231ac7c055850554232ac937c055850554233ac937c63006703600040b29268930330783287))#kanqcyum",
+    "hex": "00205faa61a33ff1862186751e57157eb1303f1f04fe4a230124fb449d4efdee900a",
+    "address": "tb1qt74xrgel7xrzrpn4ret32l43xql37p87fg3szf8mgjw5al0wjq9qu0e4a8",
+    "type": "witness_v0_scripthash",
+    "p2sh-segwit": "2Mx35TF9QY8QzQVGJqncavidbRbCrS4u1Lq"
+  }
+}
+-->
 
 [Reference Testnet
 Transaction 4](https://mempool.space/testnet/tx/1a9ba5a5a37a0df72dfbc28f57de89ce35bda1819afa73712bc29caa32164687)

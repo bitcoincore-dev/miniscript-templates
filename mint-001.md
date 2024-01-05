@@ -52,6 +52,8 @@ Initially, the wallet requires 2-of-3 keys, functioning as a traditional 2-of-3 
 
 - Max duration epoch time relative timelock (\~388 days)
 
+	- It is suggested that the first **Relative Epoch Timelock**
+
 Below is a reference diagram on how the 3 Key Time Layered Multisig operates across time:
 
 ---

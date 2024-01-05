@@ -52,7 +52,11 @@ Initially, the wallet requires 2-of-3 keys, functioning as a traditional 2-of-3 
 
 - Max duration epoch time relative timelock (\~388 days)
 
-	- It is suggested that the first **Relative Epoch Timelock**
+	- It is suggested that the first **Relative Epoch Timelock** occurs prior to the next. "Cascading" the time locks sequentially is not neccesary but eases reasoning about the intended purpose and resulting [Bitcoin Script](https://en.bitcoin.it/wiki/Script) structure.
+
+<!--
+@RandyMcMillan - "Cascading TimeLocks" may be a better term to refer to these structures. "Degrading Timelocks" has a negative connotation."
+-->
 
 Below is a reference diagram on how the 3 Key Time Layered Multisig operates across time:
 

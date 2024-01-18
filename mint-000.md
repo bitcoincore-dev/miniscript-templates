@@ -50,9 +50,9 @@ practices.
 ## Absolute Epochtime based Timelocks
 
 **Guideline**: To synchronize with real-world time rather than block
-time, employ epoch timestamps that are divisible by 43200 (Noon GMT) or
-86400 (Midnight GMT). Optimally, use multiples of 604800 for Thursday at
-Midnight GMT.
+time, employ epoch timestamps that are divisible by 43200 (Noon UTC) or
+86400 (Midnight UTC). Optimally, use multiples of 604800 for Thursday at
+Midnight UTC.
 
 **Limitation**: Avoid setting epoch timestamps beyond 2105 (4291704000)
 to prevent any possible issue with related to its 32 bit unsigned
@@ -60,13 +60,13 @@ integer used for timestamps to happen in February of 2106.
 
 ##### Examples of valid Epoch Timestamp Absolute Timelocks
 
-**<code>after(1694476800)</code>** ***September 12th, 2023 Midnight GMT***
+**<code>after(1694476800)</code>** ***September 12th, 2023 Midnight UTC***
 
-**<code>after(1694520000)</code>** ***September 12th, 2023 Moon GMT***
+**<code>after(1694520000)</code>** ***September 12th, 2023 Noon UTC***
 
-**<code>after(2160172800)</code>** ***June 15th, 2038 Midnight GMT***
+**<code>after(2160172800)</code>** ***June 15th, 2038 Midnight UTC***
 
-**<code>after(2234779200)</code>** ***October 25th, 2040 Noon GMT***
+**<code>after(2234779200)</code>** ***October 25th, 2040 Noon UTC***
 
 ## Relative Epochtime based Timelocks
 
